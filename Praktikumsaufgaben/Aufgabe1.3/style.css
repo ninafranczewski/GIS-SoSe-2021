@@ -1,0 +1,63 @@
+body {
+    max-width: 800px;
+    margin: auto;
+    font-family: sans-serif;
+    text-align: center;
+    background-image: url("bg.png")
+}
+main {
+    max-width: 800px;
+    margin: auto;
+}
+#ankerpunkt {
+    text-align: center;
+    color: pink;
+}
+div.imageHold {
+    padding: 30px 30px;
+}
+div.imageHold img:hover {
+    width: 40px;       
+}
+#navigation a {
+    color: grey;
+    padding: 8px;
+    float: left;
+    text-decoration: none;
+}
+#navigation a:hover {
+    color: pink;
+}
+#navigation {
+    margin-left: 800px;
+    position: fixed;
+    top: 0;
+}
+#footer a:hover {
+    color: pink;
+}
+#footer a {
+    text-decoration: none;
+    color: grey;
+}
+.box {
+    background:pink;
+    width: 250px;
+    margin: auto;
+    border: 2px solid grey;
+    padding: 10px 10px 10 px 10px;
+}
+.formular {
+    border: none;
+}
+input {
+    background-color: rgb(199, 196, 196);
+    border: none;
+    color:white;
+}
+::placeholder { 
+    color: white;
+}
+#h5 {
+    color: pink;
+}
