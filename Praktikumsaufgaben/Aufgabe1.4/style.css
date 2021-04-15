@@ -12,17 +12,18 @@ main {
 #ankerpunkt {
     text-align: center;
     color: pink;
+    font-size: 2.7em;
+    transition: color 2.5s ease-in-out 0s;
+}
+#ankerpunkt:hover {
+    color: black;
 }
 div.imageHold {
-    padding: 20px 20px;
-    
+    max-height: 30px;
+    margin: auto; 
 }
 div.imageHold img:hover {
-    width: 36px; 
-}
-#icon {
-    position: absolute;      
-    margin: auto; 
+    width: 36px;
 }
 #navigation a {
     color: grey;
@@ -44,6 +45,20 @@ div.imageHold img:hover {
 #footer a {
     text-decoration: none;
     color: grey;
+}
+#footer{
+    animation-duration: 5s;
+    animation-name: slidein;
+}
+@keyframes slidein {
+    from {
+        margin-right: 100%;
+        width: 300%;
+    }
+    to {
+        margin-right: 0%;
+        width: 100%;
+    }
 }
 .box {
     background:pink;
@@ -69,4 +84,64 @@ input {
 .active {
     background-color: pink;
     color: white;
+}
+
+
+div h2 {
+    color: rgb(82, 82, 82);
+}
+
+h2 + p {
+    margin: auto;
+    width: 400px;
+    background: rgb(253, 210, 217);
+}
+
+footer * {
+    font-style: oblique;
+}
+
+main * {
+    flex-direction: column;
+}
+
+@media (min-width: 601px) and (max-width: 1024px){
+    body{
+        max-width: 700px;
+        color:palevioletred;
+    }
+    #ankerpunkt {
+        color:deeppink;
+        font-size: 2.3em;
+    }
+    #navigation {
+        margin-left: 700px;
+        position: fixed;
+        top: 0;
+    }
+}
+@media (max-width: 600px){
+    body{
+        width: 100%;
+        color:grey;
+    }
+    #ankerpunkt {
+        color: palevioletred;
+        font-size: 2em;
+    }
+    #navigation {
+        margin-left: 500px;
+        position: fixed;
+        top: 0;
+    }
+    #video video{
+        width: 75%;
+    }
+    #bali img{
+        width: 50%;
+    }
+    div > a {
+        font-size: 82%;
+    }
+
 }
