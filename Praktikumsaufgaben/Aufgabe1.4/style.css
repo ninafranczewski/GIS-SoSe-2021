@@ -144,8 +144,8 @@ main * {
     div > a {
         font-size: 82%;
     }
-    .flex-item-right, .flex-item-left {
-        flex: 100%;
+    .flex-container {
+        flex-direction: column;
       }
 
 }
@@ -158,13 +158,13 @@ main * {
     text-align: center;
   }
   
-  .flex-item-left {
+.flex-item-left {
     background-color: rgb(248, 222, 227);
     padding: 7px;
     flex: 50%;
   }
   
-  .flex-item-right {
+.flex-item-right {
     background-color: rgb(250, 185, 196);
     padding: 7px;
     flex: 50%;
