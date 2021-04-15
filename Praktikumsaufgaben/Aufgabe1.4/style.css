@@ -14,13 +14,16 @@ main {
     color: pink;
 }
 div.imageHold {
-    padding: 30px;
-    margin: auto; 
+    padding: 20px 20px;
+    
 }
 div.imageHold img:hover {
     width: 36px; 
 }
-
+#icon {
+    position: absolute;      
+    margin: auto; 
+}
 #navigation a {
     color: grey;
     padding: 8px;
