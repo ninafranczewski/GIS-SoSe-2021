@@ -62,17 +62,17 @@ function func6() {
 //    nach Prüfung: das letzte Hallo wird nicht ausgegeben.
 // b) Globale Variablen: existieren im ganzen Code
 //    Lokale Variablen: existeren nur innerhalb eines Blocks
+//    Übergabeparameter: diese werden als Wert übergeben und als Kopie bereitgestellt
 //    “normale” Variablen (Zahlen und strings): haben einen Wert
 //    Funktionen = Anweisungsblöcke, die im Code mit dem entsprechendem Name aufgerufen werden können
 //Aufgabe 5
 //a) zwei Zahlen als Parameter und als Rückgabewert das Ergebnis der Multiplikation der beiden Parameter
-function multiply() {
-    let x = 9;
-    let y = 2;
-    let z = x * y;
-    console.log(z);
-}
-multiply();
+    let xzahl = 9;
+    let yzahl = 3;
+    function multiply(xzahl, yzahl) {
+        return xzahl * yzahl;
+    }
+    console.log(multiply(xzahl, yzahl));
 //b) zwei Zahlen als Parameter und die größere der beiden zurück geben
 function max() {
     let x = 9;
@@ -97,21 +97,21 @@ for (let l = 0; l <= 9; l++) {
     zRandom = Math.random() * zmax;
     console.log(zRandom);
 }
-//e) eine Zahl n entgegen nimmt und als Rückgabewert die Fakultät (1*2*3*...*n) dieser Zahl zurück gibt
-function factorial(n) {
-    let e = 1;
-    if (n < 1) {
-        e = 1;
-        console.log(e);
-    }
-    if (n > 1) {
-        for (let i = 1; i <= n; i++) {
-            e = e * i;
+//e) eine Zahl p entgegen nehmen und als Rückgabewert die Fakultät (1*2*3*...*n) dieser Zahl zurück geben
+let p = 5;
+    let ergebnis = 1;
+    function factorial(p) {
+        if (n < 1) {
+            return 1;
         }
-        console.log(e);
+        while (p > 0) {
+            ergebnis = ergebnis * p;
+            p--;
+        }
+        return ergebnis;
     }
-}
-factorial(6);
+    factorial(p);
+    console.log(ergebnis);
 //f)
 function leapyears() {
     let jahr = 1900;
@@ -146,6 +146,7 @@ while (h < 100) {
         h++;
     }
 }
+
 //c) "FizzBuzz" -> wenn die Zahl durch sowohl 3 als auch durch 5 teilbar ist
 let k = 1;
 while (k < 100) {
@@ -166,6 +167,7 @@ while (k < 100) {
         k++;
     }
 }
+
 //d) Funktion, welche einen String zurückgibt, der ein 8x8 Schachbrett repräsentiert, mit neuen Zeilen ("\n") um die Zeilen zu trennen. 
 //   An jeder Position im Brett ist entweder ein # oder ein Leerzeichen.
 let zeile = " ";
@@ -188,4 +190,28 @@ function schachbrett() {
     }
 }
 schachbrett();
+
+
+//e) -> Übergabeparameter hinzufügen, welcher die Höhe und Breite des Brettes bestimmt (soll mit jeder Größe funktionieren)
+let zz= 6;
+let sz = 14;
+let zeile2 = " ";
+function schachbrett2(zz, sz) {
+    sz /= 2;
+    for (let n = 0; n < zz; n++) {
+        if (n % 2 == 0) {
+            for (let o = 0; o < sz; o++) {
+                zeile2 += " " + "#";
+            }
+        }
+        else {
+            for (let o = 0; o < sz; o++) {
+                zeile2 += "#" + " ";
+            }
+        }
+        console.log(zeile2 + "\n");
+        zeile2 = " ";
+    }
+}
+schachbrett2(zz, sz);
 //# sourceMappingURL=script.js.map
