@@ -104,28 +104,28 @@ console.log(split(array6, 1, 4)); //Ausgabe von Stelle 1-4 des Arrays (= 5 4 3 2
 let canvas = document.getElementById("myFirstCanvas");
 let context = canvas.getContext("2d");
 context.lineWidth = 10;
+//Wiese
+context.fillStyle = "Green";
+context.fillRect(0, 250, 500, 200);
 //Himmel
 context.fillStyle = "LightBlue";
-context.fillRect(0, 0, 500, 300);
-//Boden
-context.fillStyle = "Green";
-context.fillRect(0, 250, 500, 220);
+context.fillRect(0, 0, 500, 250);
 //Sonne
 context.beginPath();
 context.fillStyle = "Yellow";
-context.arc(40, 40, 60, 0, 360, false);
+context.arc(460, 40, 60, 0, 360, false);
 context.fill();
-//Wolke
+//Wolke1
 context.beginPath();
 context.fillStyle = "White";
-context.arc(300, 50, 45, 0, 360, false);
+context.arc(240, 50, 45, 0, 360, false);
 context.fill();
 //Wolke2
 context.beginPath();
 context.fillStyle = "White";
-context.arc(340, 50, 37, 0, 360, false);
+context.arc(280, 50, 37, 0, 360, false);
 context.fill();
-//Baum
+//Baum1
 context.beginPath();
 context.fillStyle = "Green";
 context.arc(420, 190, 25, 0, 360, false);
@@ -144,33 +144,32 @@ context.fillStyle = "Black";
 context.fillRect(365, 210, 10, 40);
 context.fill();
 //Haus
-context.strokeRect(75, 140, 150, 110);
-context.fillRect(130, 190, 40, 60);
+context.strokeRect(65, 140, 150, 110);
+context.fillRect(120, 190, 40, 60);
 context.beginPath();
-context.moveTo(50, 140);
-context.lineTo(150, 60);
-context.lineTo(250, 140);
+context.moveTo(40, 140);
+context.lineTo(140, 60);
+context.lineTo(240, 140);
 context.closePath();
 context.stroke();
 //c) Funktion, die ein befülltes Rechteck zurück gibt
 function createRect() {
-    let rechteck1 = { posX: Math.random() * 400, posY: Math.random() * 400, sizeX: Math.random() * 100, sizeY: Math.random() * 100 };
+    let rechteck1 = { posX: Math.random() * 500, posY: Math.random() * 500, sizeX: Math.random() * 100, sizeY: Math.random() * 100 };
     return rechteck1;
 }
 //d) Rechtecke auf Canvas abgebildet
 function drawRect(rechteck1) {
     context.beginPath();
-    context.fillRect(rechteck1.posX += 10, rechteck1.posY, rechteck1.sizeX, rechteck1.sizeY);
+    context.fillRect(rechteck1.posX += 15, rechteck1.posY, rechteck1.sizeX, rechteck1.sizeY);
     context.fill();
 }
 //e) Rechtecke in Array anlegen
-let rectangles = [];
-rectangles.push(createRect());
-rectangles.push(createRect());
-rectangles.push(createRect());
-rectangles.push(createRect());
-rectangles.push(createRect());
-for (let i = 0; i < rectangles.length; i++) {
-    drawRect(rectangles[i]);
+let recht = [];
+recht.push(createRect());
+recht.push(createRect());
+recht.push(createRect());
+recht.push(createRect());
+for (let i = 0; i < recht.length; i++) {
+    drawRect(recht[i]);
 }
 //# sourceMappingURL=script.js.map
