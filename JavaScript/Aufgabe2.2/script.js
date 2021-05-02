@@ -29,6 +29,7 @@ let num2 = 75;
 console.log(num1 + " " + isEven(num1));
 console.log(num2 + " " + isEven(num2));
 /*let zahl3 = -1;
+
 console.log(zahl3 + " " + isEven(zahl3));
 -> da -1 nich größer gleich 0 ist, wird die while schleife für -1 nicht durchlaufen und somit erhalten wir die information, dass keine Lösung gefunden wurde (auf der Kosnsole).
 */
@@ -98,7 +99,7 @@ function split(array6, zahl4, zahl3) {
     }
     return agesamt;
 }
-let array6 = [4, 5, 4, 3, 2, 6];
+let array6 = [4, 5, 4, 3, 2, 6, 8, 9];
 console.log(split(array6, 1, 4)); //Ausgabe von Stelle 1-4 des Arrays (= 5 4 3 2)
 //Aufgabe3 a)
 let canvas = document.getElementById("myFirstCanvas");
@@ -154,18 +155,16 @@ context.closePath();
 context.stroke();
 //c) Funktion, die ein befülltes Rechteck zurück gibt
 function createRect() {
-    let rechteck1 = { posX: Math.random() * 500, posY: Math.random() * 500, sizeX: Math.random() * 100, sizeY: Math.random() * 100 };
+    let rechteck1 = { x: Math.random() * 500, y: Math.random() * 500, z: Math.random() * 100, a: Math.random() * 100 };
     return rechteck1;
 }
-//d) Rechtecke auf Canvas abgebildet
+//d) Rechtecke auf Canvas abbilden
 function drawRect(rechteck1) {
     context.beginPath();
-    context.fillRect(rechteck1.posX += 15, rechteck1.posY, rechteck1.sizeX, rechteck1.sizeY);
-    context.fill();
+    context.fillRect(rechteck1.x, rechteck1.y, rechteck1.z, rechteck1.a);
 }
-//e) Rechtecke in Array anlegen
+//e) Rechtecke in Array anlegen & ausführen
 let recht = [];
-recht.push(createRect());
 recht.push(createRect());
 recht.push(createRect());
 recht.push(createRect());
