@@ -153,22 +153,23 @@ context.lineTo(140, 60);
 context.lineTo(240, 140);
 context.closePath();
 context.stroke();
-//c) Funktion, die ein befülltes Rechteck zurück gibt
-function createRect() {
-    let rechteck1 = { x: Math.random() * 500, y: Math.random() * 500, z: Math.random() * 100, a: Math.random() * 100 };
+/*//c) Funktion, die ein befülltes Rechteck zurück gibt
+function createRect(): Rechteck {
+    let rechteck1: Rechteck = { x: Math.random() * 500, y: Math.random() * 500, z: Math.random() * 100, a: Math.random() * 100 };
     return rechteck1;
 }
 //d) Rechtecke auf Canvas abbilden
-function drawRect(rechteck1) {
+function drawRect(rechteck1: Rechteck): void {
     context.beginPath();
     context.fillRect(rechteck1.x, rechteck1.y, rechteck1.z, rechteck1.a);
 }
 //e) Rechtecke in Array anlegen & ausführen
-let recht = [];
+let recht: Rechteck[] = [];
 recht.push(createRect());
 recht.push(createRect());
 recht.push(createRect());
-for (let i = 0; i < recht.length; i++) {
+
+for (let i: number = 0; i < recht.length; i++) {
     drawRect(recht[i]);
-}
+}*/ 
 //# sourceMappingURL=script.js.map

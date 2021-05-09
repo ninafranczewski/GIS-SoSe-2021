@@ -174,7 +174,7 @@ interface Rechteck {
     a: number;
 }
 
-//c) Funktion, die ein befülltes Rechteck zurück gibt
+/*//c) Funktion, die ein befülltes Rechteck zurück gibt
 function createRect(): Rechteck {
     let rechteck1: Rechteck = { x: Math.random() * 500, y: Math.random() * 500, z: Math.random() * 100, a: Math.random() * 100 };
     return rechteck1;
@@ -192,4 +192,4 @@ recht.push(createRect());
 
 for (let i: number = 0; i < recht.length; i++) {
     drawRect(recht[i]);
-}
+}*/
