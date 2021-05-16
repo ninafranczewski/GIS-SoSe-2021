@@ -103,7 +103,7 @@ let alleObjekte: AllParts = JSON.parse(partsJSON);
             console.log(output.dataset.speicherart);
             localStorage.setItem("yourhead", output.dataset.speicherart);
             localStorage.setItem("yourimg", output.dataset.speicherimage);
-            // console.log(localStorage.getItem("yourehead"));
+            //console.log(localStorage.getItem("yourehead"));
             //console.log(localStorage.getItem("yourimg")); 
         }
        
@@ -111,7 +111,7 @@ let alleObjekte: AllParts = JSON.parse(partsJSON);
             console.log(output.dataset.speicherart);
             localStorage.setItem("yourtorso", output.dataset.speicherart);
             localStorage.setItem("yourtorsoimage", output.dataset.speicherimage);
-            // console.log(localStorage.getItem("yourehead"));
+            //console.log(localStorage.getItem("yourehead"));
             //console.log(localStorage.getItem("yourimg")); 
         }
        
@@ -119,14 +119,14 @@ let alleObjekte: AllParts = JSON.parse(partsJSON);
             console.log(output.dataset.speicherart);
             localStorage.setItem("yourlegs", output.dataset.speicherart);
             localStorage.setItem("yourlegsimage", output.dataset.speicherimage);
-            // console.log(localStorage.getItem("yourehead"));
+            //console.log(localStorage.getItem("yourehead"));
             //console.log(localStorage.getItem("yourimg")); 
         }
        
     }
     if (document.querySelector("title").getAttribute("id") == "zweiteseite") {
         let div: HTMLDivElement = document.createElement("div");
-        div.style.maxWidth = "250px";
+        div.style.maxWidth = "200px";
         document.body.appendChild(div);
      
       
@@ -137,7 +137,7 @@ let alleObjekte: AllParts = JSON.parse(partsJSON);
     }
     if (document.querySelector("title").getAttribute("id") == "dritteseite") {
         let div: HTMLDivElement = document.createElement("div");
-        div.style.maxWidth = "250px";
+        div.style.maxWidth = "200px";
         document.body.appendChild(div);
 
         let img: HTMLImageElement = document.createElement("img");
@@ -152,7 +152,7 @@ let alleObjekte: AllParts = JSON.parse(partsJSON);
     }
     if (document.querySelector("title").getAttribute("id") == "vierteseite") {
         let div: HTMLDivElement = document.createElement("div");
-        div.style.maxWidth = "250px";
+        div.style.maxWidth = "200px";
         document.body.appendChild(div);
         
         let img: HTMLImageElement = document.createElement("img");

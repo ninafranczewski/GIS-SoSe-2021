@@ -96,27 +96,27 @@ var Aufgabe2_4;
             console.log(output.dataset.speicherart);
             localStorage.setItem("yourhead", output.dataset.speicherart);
             localStorage.setItem("yourimg", output.dataset.speicherimage);
-            // console.log(localStorage.getItem("yourehead"));
+            //console.log(localStorage.getItem("yourehead"));
             //console.log(localStorage.getItem("yourimg")); 
         }
         if (document.querySelector("title").getAttribute("id") == "zweiteseite") {
             console.log(output.dataset.speicherart);
             localStorage.setItem("yourtorso", output.dataset.speicherart);
             localStorage.setItem("yourtorsoimage", output.dataset.speicherimage);
-            // console.log(localStorage.getItem("yourehead"));
+            //console.log(localStorage.getItem("yourehead"));
             //console.log(localStorage.getItem("yourimg")); 
         }
         if (document.querySelector("title").getAttribute("id") == "dritteseite") {
             console.log(output.dataset.speicherart);
             localStorage.setItem("yourlegs", output.dataset.speicherart);
             localStorage.setItem("yourlegsimage", output.dataset.speicherimage);
-            // console.log(localStorage.getItem("yourehead"));
+            //console.log(localStorage.getItem("yourehead"));
             //console.log(localStorage.getItem("yourimg")); 
         }
     }
     if (document.querySelector("title").getAttribute("id") == "zweiteseite") {
         let div = document.createElement("div");
-        div.style.maxWidth = "250px";
+        div.style.maxWidth = "200px";
         document.body.appendChild(div);
         let img = document.createElement("img");
         img.src = localStorage.getItem("yourimg");
@@ -125,7 +125,7 @@ var Aufgabe2_4;
     }
     if (document.querySelector("title").getAttribute("id") == "dritteseite") {
         let div = document.createElement("div");
-        div.style.maxWidth = "250px";
+        div.style.maxWidth = "200px";
         document.body.appendChild(div);
         let img = document.createElement("img");
         img.src = localStorage.getItem("yourimg");
@@ -138,7 +138,7 @@ var Aufgabe2_4;
     }
     if (document.querySelector("title").getAttribute("id") == "vierteseite") {
         let div = document.createElement("div");
-        div.style.maxWidth = "250px";
+        div.style.maxWidth = "200px";
         document.body.appendChild(div);
         let img = document.createElement("img");
         img.src = localStorage.getItem("yourimg");
