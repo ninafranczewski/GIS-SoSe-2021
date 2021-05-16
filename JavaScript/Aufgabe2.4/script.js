@@ -1,47 +1,157 @@
 "use strict";
 var Aufgabe2_4;
 (function (Aufgabe2_4) {
-    function Div(_part, _index) {
-        let div = document.createElement("div");
+    /*function Div(_part: junge, _index: number): HTMLDivElement {
+        
+        let div: HTMLDivElement = document.createElement("div");
         div.classList.add("junge");
-        //Bilder anzeigen
-        let img = document.createElement("img");
+    
+        //image anzeigen
+        let img: HTMLImageElement = document.createElement("img");
         img.src = _part.image;
         div.appendChild(img);
-        /*Bildbeschreibung
+    
+        imagebeschreibung
         let span: HTMLSpanElement = document.createElement("span");
         span.innerText = _part.origin;
-        div.appendChild(span);*/
+        div.appendChild(span);
+    
         //Button
-        let btn = document.createElement("button");
-        btn.innerText = "Select";
+        let botton: HTMLButtonElement = document.createElement("button");
+        botton.innerText = "Select";
         // Möglichkeit 1: innere Funktion
-        btn.addEventListener("click", handleSelection);
-        // Möglichkeit 2: äußere Funktion 
-        btn.addEventListener("click", handleSelection2);
-        btn.dataset.index = _index.toString();
-        div.appendChild(btn);
+        botton.addEventListener("click", handleSelection);
+    
+        // Möglichkeit 2: äußere Funktion
+        botton.addEventListener("click", handleSelection2);
+        botton.dataset.index = _index.toString();
+    
+        div.appendChild(botton);
+    
         return div;
-        // innere Funktion, welche Durch ihre Positionierung innerhalb der Div Funktion das _part noch kennt. Darum kann man einfach folgendes machen:
-        function handleSelection(_e) {
-            console.log("innere Funktion", _part);
+    
+        function handleSelection(_e: Event): void {
+          console.log("innere Funktion", _part);
+        }
+      }
+    
+      function handleSelection2(_e: Event): void {
+        let target: HTMLElement = <HTMLElement> _e.currentTarget;
+        let index: number = Number(target.dataset.index);
+    
+        console.log("äußere Funktion", parts.heads[index]);
+      }
+    
+      function showPossibilities(_parts: junge[]): void {
+        let wrapper: HTMLDivElement = <HTMLDivElement> document.getElementById("selection");
+        for (let i: number = 0; i < _parts.length; i++) {
+          let div: HTMLDivElement = Div(_parts[i], i);
+          wrapper.appendChild(div);
+        }
+      }
+    
+      showPossibilities(parts.heads);
+    } */
+    let alleObjekte = JSON.parse(Aufgabe2_4.partsJSON);
+    function createOptions(_part) {
+        let div = document.createElement("div");
+        div.style.maxWidth = "150px";
+        let img = document.createElement("img");
+        img.src = _part.image;
+        img.style.width = "100%";
+        div.appendChild(img);
+        let chooseButton = document.createElement("Button");
+        let textChooseButton = document.createTextNode(_part.origin);
+        chooseButton.appendChild(textChooseButton);
+        document.body.appendChild(chooseButton);
+        chooseButton.addEventListener("click", speichern);
+        chooseButton.dataset.speicherart = _part.origin;
+        chooseButton.dataset.speicherimage = _part.image;
+        return div;
+    }
+    if (document.querySelector("title").getAttribute("id") == "ersteseite") {
+        for (let i = 0; i < alleObjekte.heads.length; i++) {
+            let allPartsElemente = createOptions(alleObjekte.heads[i]);
+            document.body.appendChild(allPartsElemente);
+            console.log(allPartsElemente);
         }
     }
-    // äußere Funktion, welche nun anderweitig herausfinden muss, welchen Part wir gewählt haben.
-    // in diesem Fall habe ich den index im heads Array auf dem Button im dataset hinterlegt.
-    // Da der Button das ist, was das Event auslößt, können wir über _e.currentTarget darauf zugreifen.
-    function handleSelection2(_e) {
-        let target = _e.currentTarget;
-        let index = Number(target.dataset.index);
-        console.log("äußere Funktion", Aufgabe2_4.parts.heads[index]);
-    }
-    function showPossibilities(_parts) {
-        let wrapper = document.getElementById("selection");
-        for (let i = 0; i < _parts.length; i++) {
-            let div = Div(_parts[i], i);
-            wrapper.appendChild(div);
+    if (document.querySelector("title").getAttribute("id") == "zweiteseite") {
+        for (let i = 0; i < alleObjekte.torsos.length; i++) {
+            let allPartsElemente = createOptions(alleObjekte.torsos[i]);
+            document.body.appendChild(allPartsElemente);
+            console.log(allPartsElemente);
         }
     }
-    showPossibilities(Aufgabe2_4.parts.heads);
+    if (document.querySelector("title").getAttribute("id") == "dritteseite") {
+        for (let i = 0; i < alleObjekte.legs.length; i++) {
+            let allPartsElemente = createOptions(alleObjekte.legs[i]);
+            document.body.appendChild(allPartsElemente);
+            console.log(allPartsElemente);
+        }
+    }
+    function speichern(_input) {
+        let output = _input.target;
+        if (document.querySelector("title").getAttribute("id") == "ersteseite") {
+            console.log(output.dataset.speicherart);
+            localStorage.setItem("yourhead", output.dataset.speicherart);
+            localStorage.setItem("yourimg", output.dataset.speicherimage);
+            // console.log(localStorage.getItem("yourehead"));
+            //console.log(localStorage.getItem("yourimg")); 
+        }
+        if (document.querySelector("title").getAttribute("id") == "zweiteseite") {
+            console.log(output.dataset.speicherart);
+            localStorage.setItem("yourtorso", output.dataset.speicherart);
+            localStorage.setItem("yourtorsoimage", output.dataset.speicherimage);
+            // console.log(localStorage.getItem("yourehead"));
+            //console.log(localStorage.getItem("yourimg")); 
+        }
+        if (document.querySelector("title").getAttribute("id") == "dritteseite") {
+            console.log(output.dataset.speicherart);
+            localStorage.setItem("yourlegs", output.dataset.speicherart);
+            localStorage.setItem("yourlegsimage", output.dataset.speicherimage);
+            // console.log(localStorage.getItem("yourehead"));
+            //console.log(localStorage.getItem("yourimg")); 
+        }
+    }
+    if (document.querySelector("title").getAttribute("id") == "zweiteseite") {
+        let div = document.createElement("div");
+        div.style.maxWidth = "250px";
+        document.body.appendChild(div);
+        let img = document.createElement("img");
+        img.src = localStorage.getItem("yourimg");
+        img.style.width = "100%";
+        div.appendChild(img);
+    }
+    if (document.querySelector("title").getAttribute("id") == "dritteseite") {
+        let div = document.createElement("div");
+        div.style.maxWidth = "250px";
+        document.body.appendChild(div);
+        let img = document.createElement("img");
+        img.src = localStorage.getItem("yourimg");
+        img.style.width = "100%";
+        div.appendChild(img);
+        let torsoimage = document.createElement("img");
+        torsoimage.src = localStorage.getItem("yourtorsoimage");
+        torsoimage.style.width = "100%";
+        div.appendChild(torsoimage);
+    }
+    if (document.querySelector("title").getAttribute("id") == "vierteseite") {
+        let div = document.createElement("div");
+        div.style.maxWidth = "250px";
+        document.body.appendChild(div);
+        let img = document.createElement("img");
+        img.src = localStorage.getItem("yourimg");
+        img.style.width = "100%";
+        div.appendChild(img);
+        let torsoimage = document.createElement("img");
+        torsoimage.src = localStorage.getItem("yourtorsoimage");
+        torsoimage.style.width = "100%";
+        div.appendChild(torsoimage);
+        let legsimage = document.createElement("img");
+        legsimage.src = localStorage.getItem("yourlegsimage");
+        legsimage.style.width = "100%";
+        div.appendChild(legsimage);
+    }
 })(Aufgabe2_4 || (Aufgabe2_4 = {}));
 //# sourceMappingURL=script.js.map

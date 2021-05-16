@@ -11,12 +11,7 @@ h2 {
     color:lightcoral;
 }
 
-#selection {
-	display: flex;
-	justify-content: center;
-}
-
-.junge {
+.Junge {
 	display: flex;
 	flex-direction: column;
 	margin: 30px;
@@ -32,7 +27,7 @@ h2 {
     color: lightcoral;
 }*/
 
-.junge button {
+.Junge button {
 	max-width: 100px;
 	align-self: center;
 	border-radius: 5px;
