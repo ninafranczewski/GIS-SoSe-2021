@@ -1,0 +1,12 @@
+body {
+	font-family: sans-serif;
+	color: grey;
+}
+
+h1, h2, h3 {
+	text-align: center;
+}
+
+h2 {
+    color:lightcoral;
+}
