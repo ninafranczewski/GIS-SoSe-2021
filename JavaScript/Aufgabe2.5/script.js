@@ -17,24 +17,24 @@ var Aufgabe2_5;
         chooseButton.dataset.speicherimage = _part.image;
         return div;
     }
-    function auswahl(alleObjekte) {
+    function auswahl(allObjects) {
         if (document.querySelector("title").getAttribute("id") == "ersteseite") {
-            for (let i = 0; i < alleObjekte.heads.length; i++) {
-                let allPartsElemente = createOptions(alleObjekte.heads[i]);
+            for (let i = 0; i < allObjects.heads.length; i++) {
+                let allPartsElemente = createOptions(allObjects.heads[i]);
                 document.body.appendChild(allPartsElemente);
                 console.log(allPartsElemente);
             }
         }
         if (document.querySelector("title").getAttribute("id") == "zweiteseite") {
-            for (let i = 0; i < alleObjekte.torsos.length; i++) {
-                let allPartsElemente = createOptions(alleObjekte.torsos[i]);
+            for (let i = 0; i < allObjects.torsos.length; i++) {
+                let allPartsElemente = createOptions(allObjects.torsos[i]);
                 document.body.appendChild(allPartsElemente);
                 console.log(allPartsElemente);
             }
         }
         if (document.querySelector("title").getAttribute("id") == "dritteseite") {
-            for (let i = 0; i < alleObjekte.legs.length; i++) {
-                let allPartsElemente = createOptions(alleObjekte.legs[i]);
+            for (let i = 0; i < allObjects.legs.length; i++) {
+                let allPartsElemente = createOptions(allObjects.legs[i]);
                 document.body.appendChild(allPartsElemente);
                 console.log(allPartsElemente);
             }
@@ -104,7 +104,7 @@ var Aufgabe2_5;
         console.log(s);
         auswahl(s);
     }
-    communicate("https://niconaicro.github.io/GIS-SOSe-2021/Aufgabe2.5/data.json");
+    communicate("https://ninafranczewski.github.io/GIS-SoSe-2021/JavaScript/Aufgabe2.5/data.json");
     async function Daten(_url) {
         let query = new URLSearchParams(localStorage);
         _url = _url + "?" + query.toString();

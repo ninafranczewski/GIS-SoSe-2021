@@ -18,26 +18,26 @@ namespace Aufgabe2_5 {
 
     }
 
-    function auswahl(alleObjekte: AllParts): void {
+    function auswahl(allObjects: AllParts): void {
     if (document.querySelector("title").getAttribute("id") == "ersteseite") {
-        for (let i: number = 0; i < alleObjekte.heads.length; i++) {
-            let allPartsElemente: HTMLElement = createOptions(alleObjekte.heads[i]);
+        for (let i: number = 0; i < allObjects.heads.length; i++) {
+            let allPartsElemente: HTMLElement = createOptions(allObjects.heads[i]);
             document.body.appendChild(allPartsElemente);
             console.log(allPartsElemente);
         }
 
     }
     if (document.querySelector("title").getAttribute("id") == "zweiteseite") {
-        for (let i: number = 0; i < alleObjekte.torsos.length; i++) {
-            let allPartsElemente: HTMLElement = createOptions(alleObjekte.torsos[i]);
+        for (let i: number = 0; i < allObjects.torsos.length; i++) {
+            let allPartsElemente: HTMLElement = createOptions(allObjects.torsos[i]);
             document.body.appendChild(allPartsElemente);
             console.log(allPartsElemente);
         }
 
     }
     if (document.querySelector("title").getAttribute("id") == "dritteseite") {
-        for (let i: number = 0; i < alleObjekte.legs.length; i++) {
-            let allPartsElemente: HTMLElement = createOptions(alleObjekte.legs[i]);
+        for (let i: number = 0; i < allObjects.legs.length; i++) {
+            let allPartsElemente: HTMLElement = createOptions(allObjects.legs[i]);
             document.body.appendChild(allPartsElemente);
             console.log(allPartsElemente);
         }
@@ -126,7 +126,7 @@ namespace Aufgabe2_5 {
     export interface Answer {
         [key: string]: string;
     }
-    communicate("https://niconaicro.github.io/GIS-SOSe-2021/Aufgabe2.5/data.json");
+    communicate("https://ninafranczewski.github.io/GIS-SoSe-2021/JavaScript/Aufgabe2.5/data.json");
 
     async function Daten(_url: RequestInfo): Promise <void> {
         let query: URLSearchParams = new URLSearchParams(localStorage);
