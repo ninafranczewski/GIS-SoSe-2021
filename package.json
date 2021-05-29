@@ -1,0 +1,21 @@
+{
+  "name": "gissoseomb",
+  "version": "1.0.0",
+  "description": "nina",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node Server&Daten/Abgabe3.1/server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ninafranczewski/GIS-SoSe-2021.git"
+  },
+  "author": "nina franczewski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ninafranczewski/GIS-SoSe-2021/issues"
+  },
+  "homepage": "https://github.com/ninafranczewski/GIS-SoSe-2021#readme"
+}
