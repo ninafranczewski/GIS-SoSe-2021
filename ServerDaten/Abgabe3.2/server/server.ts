@@ -5,8 +5,8 @@ export namespace P_3_2Server {
     interface ClientInformation {
         prename: string;
         lastname: string;
-        age: string;
         postcode: string;
+        adress: string;
     }
 
 
@@ -29,7 +29,7 @@ export namespace P_3_2Server {
             //URL parsen
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);           
             //Über den Pfad auslesen, was nun getan werden soll
-            let clientInformation: ClientInformation = { prename: "huhu", lastname: "", age: "", postcode: ""};
+            let clientInformation: ClientInformation = { prename: "", lastname: "", postcode: "", adress: ""};
             //JSON string erstellen
             let jsonString: string = JSON.stringify(url.query);
 
@@ -42,8 +42,8 @@ export namespace P_3_2Server {
                 _response.write("<h3>" + "Serverantwort:" + "</h3>");
                 _response.write("<p>" + clientInformation.prename + "</p>");
                 _response.write("<p>" + clientInformation.lastname + "</p>");
-                _response.write("<p>" + clientInformation.age + "</p>");
                 _response.write("<p>" + clientInformation.postcode + "</p>");
+                _response.write("<p>" + clientInformation.adress + "</p>");
             }
 
             //JSON
