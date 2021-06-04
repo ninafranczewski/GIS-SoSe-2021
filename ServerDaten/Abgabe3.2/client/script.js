@@ -3,7 +3,7 @@ var Aufgabe3_2;
 (function (Aufgabe3_2) {
     //Synchrone Funktion SendData, welche die URL erweitert
     function sendDataHtml() {
-        let url = "https://gissose2021omb.herokuapp.com/html";
+        let url = "https://gissose2021omb.herokuapp.com";
         //let url: string = "http://localhost:8100/html";
         let formData = new FormData(document.forms[0]);
         // tslint:disable-next-line: no-any
@@ -20,7 +20,7 @@ var Aufgabe3_2;
         answerOutput.innerHTML = responseString;
     }
     function sendDataJson() {
-        let url = "https://gissose2021omb.herokuapp.com/json";
+        let url = "https://gissose2021omb.herokuapp.com";
         //let url: string = "http://localhost:8100/json";
         let formData = new FormData(document.forms[0]);
         // tslint:disable-next-line: no-any
@@ -34,7 +34,7 @@ var Aufgabe3_2;
         let responseString = await response.json();
         console.log(responseString);
     }
-    //Buttons/
+    //Buttons
     document.querySelector("#sendDataHtml").addEventListener("click", sendDataHtml);
     document.querySelector("#sendDataJson").addEventListener("click", sendDataJson);
 })(Aufgabe3_2 || (Aufgabe3_2 = {}));

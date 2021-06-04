@@ -2,7 +2,7 @@ namespace Aufgabe3_2 {
 
     //Synchrone Funktion SendData, welche die URL erweitert
     function sendDataHtml (): void {
-        let url: string = "https://gissose2021omb.herokuapp.com/html";
+        let url: string = "https://gissose2021omb.herokuapp.com";
         //let url: string = "http://localhost:8100/html";
         let formData: FormData = new FormData(document.forms[0]);
         // tslint:disable-next-line: no-any
@@ -21,7 +21,7 @@ namespace Aufgabe3_2 {
     }
 
     function sendDataJson (): void {
-        let url: string = "https://gissose2021omb.herokuapp.com/json";
+        let url: string = "https://gissose2021omb.herokuapp.com";
         //let url: string = "http://localhost:8100/json";
         let formData: FormData = new FormData(document.forms[0]);
         // tslint:disable-next-line: no-any
@@ -37,7 +37,7 @@ namespace Aufgabe3_2 {
         console.log(responseString);
     }
 
-    //Buttons/
+    //Buttons
     document.querySelector("#sendDataHtml").addEventListener("click", sendDataHtml);
     document.querySelector("#sendDataJson").addEventListener("click", sendDataJson);
 }
