@@ -1,4 +1,4 @@
-namespace Aufgabe3_2 {
+namespace P_3_2Server {
     let displayResponse: HTMLParagraphElement = <HTMLDivElement>document.getElementById("answer");
     async function sendDataHTML(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);

@@ -1,6 +1,6 @@
 "use strict";
-var Aufgabe3_2;
-(function (Aufgabe3_2) {
+var P_3_2Server;
+(function (P_3_2Server) {
     let displayResponse = document.getElementById("answer");
     async function sendDataHTML() {
         let formData = new FormData(document.forms[0]);
@@ -40,5 +40,5 @@ var Aufgabe3_2;
     sendButtonHTML.addEventListener("click", sendDataHTML);
     let sendButtonJSON = document.getElementById("jsonbutton");
     sendButtonJSON.addEventListener("click", sendDataJSON);
-})(Aufgabe3_2 || (Aufgabe3_2 = {}));
+})(P_3_2Server || (P_3_2Server = {}));
 //# sourceMappingURL=script.js.map
