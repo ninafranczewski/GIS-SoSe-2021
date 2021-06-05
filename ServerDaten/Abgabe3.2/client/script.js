@@ -15,12 +15,6 @@ var P_3_2Server;
     }
     async function sendDataJSON() {
         let formData = new FormData(document.forms[0]);
-        //console.log(":" + formData.get("name"));
-        //for (let entry of formData) {
-        //    console.log(entry);
-        //    console.log("name: " + entry[0]);
-        //    console.log("value: " + entry[1]);
-        //}
         let _url = "https://gissose2021omb.herokuapp.com";
         _url += "/json";
         // tslint:disable-next-line: no-any

@@ -1,4 +1,5 @@
 namespace P_3_2Server {
+    
     let displayResponse: HTMLParagraphElement = <HTMLDivElement>document.getElementById("answer");
     async function sendDataHTML(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
@@ -15,12 +16,7 @@ namespace P_3_2Server {
     }
     async function sendDataJSON(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
-        //console.log(":" + formData.get("name"));
-        //for (let entry of formData) {
-        //    console.log(entry);
-        //    console.log("name: " + entry[0]);
-        //    console.log("value: " + entry[1]);
-        //}
+     
 
 
         let _url: RequestInfo = "https://gissose2021omb.herokuapp.com";

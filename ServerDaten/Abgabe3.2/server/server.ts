@@ -12,12 +12,12 @@ export namespace P_3_2Server {
     server.addListener("listening", handleListen);
     server.listen(port);
 
-    function handleListen(): void {                     //function Listen with console output
+    function handleListen(): void {                     
         console.log("Listening");
     }
 
 
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {      //function Request granting access for everyone and giving back the sent message url
+    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {   
         console.log(_request.url);
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");  
