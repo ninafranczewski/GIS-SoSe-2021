@@ -1,39 +1,49 @@
 namespace Aufgabe3_2 {
-
-    //Synchrone Funktion SendData, welche die URL erweitert
-    function sendDataHtml (): void {
-        let url: string = "https://gissose2021omb.herokuapp.com/html";
+    let displayResponse: HTMLParagraphElement = <HTMLDivElement>document.getElementById("answer");
+    async function sendDataHTML(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
+        console.log(":" + formData.get("name"));
+        for (let entry of formData) {
+            console.log(entry);
+            console.log("name: " + entry[0]);
+            console.log("value: " + entry[1]);
+        }
+        // tslint:disable-next-line: no-any
         let query: URLSearchParams = new URLSearchParams(<any>formData);
-        //query an die Url anhängen
-        url = url + "?" + query.toString();
-        communicateHtml (url);
+        let _url: RequestInfo = "https://gissose2021omb.herokuapp.com";
+        _url += "/html";
+        _url = _url + "?" + query.toString();
+        let answer: Response = await fetch(_url);
+        let output: string = await answer.text();
+        displayResponse.innerText = output;
     }
-
-    async function communicateHtml (_url: RequestInfo): Promise<void> {
-        let response: Response = await fetch(_url);
-        let responseString: string = await response.text();
-        //HTML Code während der Laufzeit einfügen
-        let answerOutput: HTMLElement = document.getElementById("answer");
-        answerOutput.innerHTML = responseString;
-    }
-
-    function sendDataJson (): void {
-        let url: string = "https://gissose2021omb.herokuapp.com/json";
+    async function sendDataJSON(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
+        console.log(":" + formData.get("name"));
+        for (let entry of formData) {
+            console.log(entry);
+            console.log("name: " + entry[0]);
+            console.log("value: " + entry[1]);
+        }
+        // tslint:disable-next-line: no-any
         let query: URLSearchParams = new URLSearchParams(<any>formData);
-        //query an die Url anhängen
-        url = url + "?" + query.toString();
-        communicateJson (url);
+        let _url: RequestInfo = "https://gissose2021omb.herokuapp.com";
+        _url += "/json";
+        _url = _url + "?" + query.toString();
+        let answer: Response = await fetch(_url);
+        let output: JsonAnswer = await answer.json();
+        displayResponse.innerHTML = output.prename + " " + output.lastname + " " + output.postcode + " " + output.adress;
     }
- 
-    async function communicateJson (_url: RequestInfo): Promise<void> {
-        let response: Response = await fetch(_url);
-        let responseString: string = await response.json();
-        console.log(responseString);
-    }
+    
+    let sendButtonHTML: HTMLButtonElement = <HTMLButtonElement>document.getElementById("htmlbutton");
+    sendButtonHTML.addEventListener("click", sendDataHTML);
+    let sendButtonJSON: HTMLButtonElement = <HTMLButtonElement>document.getElementById("jsonbutton");
+    sendButtonJSON.addEventListener("click", sendDataJSON);
 
-    //Buttons
-    document.querySelector("#sendDataHtml").addEventListener("click", sendDataHtml);
-    document.querySelector("#sendDataJson").addEventListener("click", sendDataJson);
+    interface JsonAnswer {
+        prename: string;
+        lastname: string;
+        postcode: string;
+        adress: string;
+    }
 }
