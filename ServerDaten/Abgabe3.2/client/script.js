@@ -3,10 +3,8 @@ var Aufgabe3_2;
 (function (Aufgabe3_2) {
     //Synchrone Funktion SendData, welche die URL erweitert
     function sendDataHtml() {
-        let url = "https://gissose2021omb.herokuapp.com";
-        //let url: string = "http://localhost:8100/html";
+        let url = "https://gissose2021omb.herokuapp.com/html";
         let formData = new FormData(document.forms[0]);
-        // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
         //query an die Url anhängen
         url = url + "?" + query.toString();
@@ -20,10 +18,8 @@ var Aufgabe3_2;
         answerOutput.innerHTML = responseString;
     }
     function sendDataJson() {
-        let url = "https://gissose2021omb.herokuapp.com";
-        //let url: string = "http://localhost:8100/json";
+        let url = "https://gissose2021omb.herokuapp.com/json";
         let formData = new FormData(document.forms[0]);
-        // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
         //query an die Url anhängen
         url = url + "?" + query.toString();
