@@ -1,44 +1,41 @@
 "use strict";
-var P_3_2Server;
-(function (P_3_2Server) {
-    let displayResponse = document.getElementById("answer");
-    async function sendDataHTML() {
+var Aufgabe3_2;
+(function (Aufgabe3_2) {
+    //Synchrone Funktion SendData, welche die URL erweitert
+    function sendDataHtml() {
+        let url = "https://gissose2021omb.herokuapp.com/html";
+        //let url: string = "http://localhost:8100/html";
         let formData = new FormData(document.forms[0]);
-        console.log(":" + formData.get("name"));
-        for (let entry of formData) {
-            console.log(entry);
-            console.log("name: " + entry[0]);
-            console.log("value: " + entry[1]);
-        }
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
-        let _url = "https://gissose2021omb.herokuapp.com";
-        _url += "/html";
-        _url = _url + "?" + query.toString();
-        let answer = await fetch(_url);
-        let output = await answer.text();
-        displayResponse.innerText = output;
+        //query an die Url anhängen
+        url = url + "?" + query.toString();
+        communicateHtml(url);
     }
-    async function sendDataJSON() {
+    async function communicateHtml(_url) {
+        let response = await fetch(_url);
+        let responseString = await response.text();
+        //HTML Code während der Laufzeit einfügen
+        let answerOutput = document.getElementById("answer");
+        answerOutput.innerHTML = responseString;
+    }
+    function sendDataJson() {
+        let url = "https://gissose2021omb.herokuapp.com/json";
+        //let url: string = "http://localhost:8100/json";
         let formData = new FormData(document.forms[0]);
-        console.log(":" + formData.get("name"));
-        for (let entry of formData) {
-            console.log(entry);
-            console.log("name: " + entry[0]);
-            console.log("value: " + entry[1]);
-        }
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
-        let _url = "https://gissose2021omb.herokuapp.com";
-        _url += "/json";
-        _url = _url + "?" + query.toString();
-        let answer = await fetch(_url);
-        let output = await answer.json();
-        displayResponse.innerHTML = output.prename + " " + output.lastname + " " + output.postcode + " " + output.adress;
+        //query an die Url anhängen
+        url = url + "?" + query.toString();
+        communicateJson(url);
     }
-    let sendButtonHTML = document.getElementById("htmlbutton");
-    sendButtonHTML.addEventListener("click", sendDataHTML);
-    let sendButtonJSON = document.getElementById("jsonbutton");
-    sendButtonJSON.addEventListener("click", sendDataJSON);
-})(P_3_2Server || (P_3_2Server = {}));
+    async function communicateJson(_url) {
+        let response = await fetch(_url);
+        let responseString = await response.json();
+        console.log(responseString);
+    }
+    //Buttons
+    document.querySelector("#sendDataHtml").addEventListener("click", sendDataHtml);
+    document.querySelector("#sendDataJson").addEventListener("click", sendDataJson);
+})(Aufgabe3_2 || (Aufgabe3_2 = {}));
 //# sourceMappingURL=script.js.map
