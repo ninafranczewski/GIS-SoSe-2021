@@ -5,41 +5,34 @@ const Http = require("http");
 const Url = require("url");
 var P_3_2Server;
 (function (P_3_2Server) {
-    let port = Number(process.env.PORT);
+    console.log("Starting server");
+    let port = Number(process.env.PORT); //create Port = "Gateway" to server
     if (!port)
-        port = 8100;
-    console.log("Starting server on port:" + port);
-    //Server erstellen
-    let server = Http.createServer();
+        port = 8100; //set port to 8100 (if it wasn't before) 
+    let server = Http.createServer(); //create server
+    server.addListener("request", handleRequest); //Listener for Requests and Listen functions
+    server.addListener("listening", handleListen);
     server.listen(port);
-    server.addListener("request", handleRequest);
+    function handleListen() {
+        console.log("Listening");
+    }
     function handleRequest(_request, _response) {
-        console.log("Hearing");
+        console.log(_request.url);
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
-            //URL parsen
             let url = Url.parse(_request.url, true);
-            //Über den Pfad auslesen, was nun getan werden soll
-            let clientInformation = { prename: "huhu", lastname: "", postcode: "", adress: "" };
-            //JSON string erstellen
-            let jsonString = JSON.stringify(url.query);
-            //HTML
-            if (url.pathname == "/html") {
-                //Ausgabe in Html Code
-                //JSON String in interface legen
-                clientInformation = JSON.parse(jsonString);
-                //Überschrift
-                _response.write("<h3>" + "Serverantwort:" + "</h3>");
-                _response.write("<p>" + clientInformation.prename + "</p>");
-                _response.write("<p>" + clientInformation.lastname + "</p>");
-                _response.write("<p>" + clientInformation.postcode + "</p>");
-                _response.write("<p>" + clientInformation.adress + "</p>");
+            let path = url.pathname;
+            if (path == "/html") {
+                for (let key in url.query) {
+                    _response.write(key + ":" + url.query[key]);
+                }
             }
-            //JSON
-            if (url.pathname == "/json") {
-                console.log(jsonString);
-                _response.write(jsonString);
+            if (path == "/json") {
+                path = path.substring(6, path.length - 1);
+                let sentObject = JSON.stringify(url.query);
+                console.log(sentObject);
+                _response.write(sentObject);
             }
         }
         _response.end();

@@ -11,7 +11,7 @@
 <body>
     <h1>Server und Daten</h1>
     <h3>Kontaktformular</h3>
-    <form>
+    <form action="https://gissose2021omb.herokuapp.com" method="GET">
         <label>
             Vorname:
             <input name="prename">
@@ -33,10 +33,11 @@
         </label>
         <br>
     </form>
-    <button id="sendDataHtml">Abschicken(Html)</button>
-    <button id="sendDataJson">Abschicken(JSON)</button>
+    <button type="button" id="htmlbutton"> Send HTML </button>
+    <button type="button" id="jsonbutton"> Send JSON </button>
 
-    <div id="answer"></div>
+    <h3>Serverantwort</h3>
+    <p id="answer"></p>
 
 </body>
 </html>

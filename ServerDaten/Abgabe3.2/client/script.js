@@ -1,41 +1,45 @@
 "use strict";
-var Aufgabe3_2;
-(function (Aufgabe3_2) {
-    //Synchrone Funktion SendData, welche die URL erweitert
-    function sendDataHtml() {
-        let url = "https://gissose2021omb.herokuapp.com/html";
-        //let url: string = "http://localhost:8100/html";
+var P_3_2Server;
+(function (P_3_2Server) {
+    let displayResponse = document.getElementById("answer");
+    async function sendDataHTML() {
         let formData = new FormData(document.forms[0]);
+        let _url = "https://gissose2021omb.herokuapp.com";
+        _url += "/html";
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
-        //query an die Url anhängen
-        url = url + "?" + query.toString();
-        communicateHtml(url);
+        _url = _url + "?" + query.toString();
+        let answer = await fetch(_url);
+        let output = await answer.text();
+        displayResponse.innerText = output;
     }
-    async function communicateHtml(_url) {
-        let response = await fetch(_url);
-        let responseString = await response.text();
-        //HTML Code während der Laufzeit einfügen
-        let answerOutput = document.getElementById("answer");
-        answerOutput.innerHTML = responseString;
-    }
-    function sendDataJson() {
-        let url = "https://gissose2021omb.herokuapp.com/json";
-        //let url: string = "http://localhost:8100/json";
+    async function sendDataJSON() {
         let formData = new FormData(document.forms[0]);
+        //console.log(":" + formData.get("name"));
+        //for (let entry of formData) {
+        //    console.log(entry);
+        //    console.log("name: " + entry[0]);
+        //    console.log("value: " + entry[1]);
+        //}
+        let _url = "https://gissose2021omb.herokuapp.com";
+        _url += "/json";
         // tslint:disable-next-line: no-any
         let query = new URLSearchParams(formData);
-        //query an die Url anhängen
-        url = url + "?" + query.toString();
-        communicateJson(url);
+        _url = _url + "?" + query.toString();
+        let answer = await fetch(_url);
+        //let output: string = await answer.text();
+        //let jsonOutput: string =  output.substring(6, output.length - 1);
+        let output = await answer.json();
+        //console.log(output.substring(6, output.length - 1));
+        console.log("JSON: Antwort:");
+        console.log(output);
+        displayResponse.innerHTML = output.prename;
+        console.log(displayResponse);
+        console.log(answer);
     }
-    async function communicateJson(_url) {
-        let response = await fetch(_url);
-        let responseString = await response.json();
-        console.log(responseString);
-    }
-    //Buttons
-    document.querySelector("#sendDataHtml").addEventListener("click", sendDataHtml);
-    document.querySelector("#sendDataJson").addEventListener("click", sendDataJson);
-})(Aufgabe3_2 || (Aufgabe3_2 = {}));
+    let sendButtonHTML = document.getElementById("htmlbutton");
+    sendButtonHTML.addEventListener("click", sendDataHTML);
+    let sendButtonJSON = document.getElementById("jsonbutton");
+    sendButtonJSON.addEventListener("click", sendDataJSON);
+})(P_3_2Server || (P_3_2Server = {}));
 //# sourceMappingURL=script.js.map

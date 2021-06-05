@@ -2,56 +2,44 @@ import * as Http from "http";
 import * as Url from "url";
 
 export namespace P_3_2Server {
-    interface ClientInformation {
-        prename: string;
-        lastname: string;
-        postcode: string;
-        adress: string;
+    console.log("Starting server");
+    let port: number = Number(process.env.PORT);        //create Port = "Gateway" to server
+    if (!port)
+        port = 8100;                                    //set port to 8100 (if it wasn't before) 
+
+    let server: Http.Server = Http.createServer();      //create server
+    server.addListener("request", handleRequest);       //Listener for Requests and Listen functions
+    server.addListener("listening", handleListen);
+    server.listen(port);
+
+    function handleListen(): void {                     //function Listen with console output
+        console.log("Listening");
     }
 
 
-    let port: number = Number(process.env.PORT);
-    if (!port)
-        port = 8100;
-    console.log("Starting server on port:" + port);
-    //Server erstellen
-    let server: Http.Server = Http.createServer();
-    server.listen(port);
-    server.addListener("request", handleRequest);
-    
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
-        console.log("Hearing");
-
+    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {      //function Request granting access for everyone and giving back the sent message url
+        console.log(_request.url);
         _response.setHeader("content-type", "text/html; charset=utf-8");
-        _response.setHeader("Access-Control-Allow-Origin", "*");
-
+        _response.setHeader("Access-Control-Allow-Origin", "*");  
+        
         if (_request.url) {
-            //URL parsen
-            let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);           
-            //Über den Pfad auslesen, was nun getan werden soll
-            let clientInformation: ClientInformation = { prename: "huhu", lastname: "", postcode: "",  adress: ""};
-            //JSON string erstellen
-            let jsonString: string = JSON.stringify(url.query);
-
-            //HTML
-            if (url.pathname == "/html") {
-                //Ausgabe in Html Code
-                //JSON String in interface legen
-                clientInformation = JSON.parse(jsonString);
-                //Überschrift
-                _response.write("<h3>" + "Serverantwort:" + "</h3>");
-                _response.write("<p>" + clientInformation.prename + "</p>");
-                _response.write("<p>" + clientInformation.lastname + "</p>");
-                _response.write("<p>" + clientInformation.postcode + "</p>");
-                _response.write("<p>" + clientInformation.adress + "</p>");
+            let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+            let path: string = <string>url.pathname; 
+            if (path == "/html") {
+                for (let key in url.query) {
+                    _response.write(key + ":" + url.query[key]);
+                }
             }
-
-            //JSON
-            if (url.pathname == "/json") {
-                console.log(jsonString);
-                _response.write(jsonString);
+            if (path == "/json") {
+                path = path.substring(6, path.length - 1);
+                let sentObject: string = JSON.stringify(url.query);
+                console.log(sentObject);
+                _response.write(sentObject);
+                
             }
-        } 
+        }
         _response.end();
     }
+
+
 }
