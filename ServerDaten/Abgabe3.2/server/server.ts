@@ -17,7 +17,7 @@ export namespace P_3_2Server {
     }
 
 
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {      //function Request granting access for everyone and giving back the sent message url
+    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {      //granting access for everyone and giving back the sent message url
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
