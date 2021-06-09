@@ -22,7 +22,7 @@ var P_3_2Server;
         _url = _url + "?" + query.toString();
         let answer = await fetch(_url);
         let output = await answer.json();
-        displayResponse.innerHTML += "Vorname: " + output.prename + "Nachname: " + output.lastname + "Postleitzahl: " + output.postcode + "Adresse: " + output.adress;
+        displayResponse.innerHTML += "Vorname: " + output.prename + " Nachname: " + output.lastname + " Postleitzahl: " + output.postcode + " Adresse: " + output.adress;
         console.log(answer);
         console.log(output);
     }
