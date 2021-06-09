@@ -12,31 +12,23 @@
     <h1>Server und Daten</h1>
     <h3>Kontaktformular</h3>
     <form action="https://gissose2021omb.herokuapp.com" method="GET">
-        <label>
-            Vorname:
-            <input name="prename">
-        </label>
+        <label for="prename"> Vorname </label> 
+        <input  type="text" name="prename">
         
-        <label>
-            Nachname:
-            <input name="lastname">
-        </label>
+        <label for="lastname"> Nachname </label> 
+        <input  type="text" name="lastname">
         
-        <label>
-            Postleitzahl:
-            <input name="postcode">
-        </label>
+        <label for="postcode"> Postleitzahl </label> 
+        <input  type="text" name="postcode">
         
-        <label>
-            Adresse:
-            <input name="adress">
-        </label>
+        <label for="adress"> Adresse </label> 
+        <input  type="text" name="adress">
         
+        <button type="button" id="htmlbutton"> Send HTML </button>
+        <button type="button" id="jsonbutton"> Send JSON </button>
     </form>
-    <button type="button" id="htmlbutton"> Send HTML </button>
-    <button type="button" id="jsonbutton"> Send JSON </button>
 
-
+    <h3>Serverantwort</h3>
     <p id="answer"></p>
 
 </body>
