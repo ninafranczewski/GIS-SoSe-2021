@@ -17,19 +17,18 @@ var P_3_2Server;
         console.log("Listening");
     }
     function handleRequest(_request, _response) {
-        console.log(_request.url);
-        _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url = Url.parse(_request.url, true);
             let path = url.pathname;
             if (path == "/html") {
+                _response.setHeader("content-type", "text/html; charset=utf-8");
                 for (let key in url.query) {
-                    _response.write(key + ":" + url.query[key]);
+                    _response.write("<p>" + key + ":" + url.query[key] + "</p>");
                 }
             }
-            if (path == "/json") {
-                path = path.substring(6, path.length - 1);
+            else if (path == "/json") {
+                _response.setHeader("content-type", "application/json");
                 let sentObject = JSON.stringify(url.query);
                 console.log(sentObject);
                 _response.write(sentObject);
