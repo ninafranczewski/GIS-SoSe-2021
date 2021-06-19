@@ -7,7 +7,7 @@ const Mongo = require("mongodb");
 var P_3_4Server;
 (function (P_3_4Server) {
     //URL für Datenbank
-    let mongoUrl = "mongodb+srv://new-user1:<user123>@clusternina.efcgg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    let mongoUrl = "mongodb+srv://new-user1:user123@clusternina.efcgg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     let port = Number(process.env.PORT);
     if (!port)
         port = 8100;
