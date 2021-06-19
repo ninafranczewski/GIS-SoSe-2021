@@ -7,7 +7,7 @@ const Mongo = require("mongodb");
 var P_3_4Server;
 (function (P_3_4Server) {
     //URL für Datenbank
-    let mongoUrl = "mongodb+srv://new-user1:<password>@clusternina.efcgg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    let mongoUrl = "mongodb+srv://new-user1:<user123>@clusternina.efcgg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     let port = Number(process.env.PORT);
     if (!port)
         port = 8100;
@@ -17,7 +17,7 @@ var P_3_4Server;
     server.listen(port);
     server.addListener("request", handleRequest);
     function handleRequest(_request, _response) {
-        console.log("Heariing");
+        console.log("Hearing");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         //URL parsen
