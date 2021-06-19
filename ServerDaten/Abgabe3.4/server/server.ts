@@ -11,7 +11,7 @@ export namespace P_3_4Server {
     }
 
     //URL für Datenbank
-    let mongoUrl: string = "mongodb+srv://new-user1:user123@clusternina.efcgg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    let mongoUrl: string = "mongodb+srv://user-2:user123@clusternina.efcgg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     let port: number = Number(process.env.PORT);
     if (!port)
         port = 8100;
