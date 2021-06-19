@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form>
+        <h1>Formular</h1>
+        <p>Name</p>
+        <input type="text" name="name">
+        <h4>Geschlecht</h4>
+        <input id ="men" type="radio" name="gender" value="männlich">
+        <label for="men">männlich</label>
+        <input id="women" type="radio" name="gender" value="weiblich">
+        <label for="women">weiblich</label>
+        <h4>Alter</h4>
+        <select name="box">
+            <option value="under20">Über 20 Jahre alt</option>
+            <option value="over20">Unter 20 Jahre alt</option>
+        </select>
+    </form>
+    <br>
+    <button id="sendData">Absenden</button>
+    <button id="printData">Daten anzeigen</button>
+
+    <p id="confirmation"></p>
+    <div class= "container" id="answer"></div>
+
+</body>
+</html>

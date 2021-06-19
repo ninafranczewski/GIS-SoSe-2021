@@ -1,0 +1,12 @@
+
+.container {
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+}
+
+.container div {
+    border-style:solid;
+    padding: 20px;
+    margin: 20px;
+}
