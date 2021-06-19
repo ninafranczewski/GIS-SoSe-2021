@@ -6,7 +6,6 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var P_3_4Server;
 (function (P_3_4Server) {
-    //let mongoUrl: string = "mongodb://localhost:27017";
     //URL für Datenbank
     let mongoUrl = "mongodb+srv://new-user1:<password>@clusternina.efcgg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     let port = Number(process.env.PORT);

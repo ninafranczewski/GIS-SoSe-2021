@@ -9,7 +9,7 @@ export namespace P_3_4Server {
         gender: string;
         box: string;
     }
-    //let mongoUrl: string = "mongodb://localhost:27017";
+
     //URL für Datenbank
     let mongoUrl: string = "mongodb+srv://new-user1:<password>@clusternina.efcgg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     let port: number = Number(process.env.PORT);
