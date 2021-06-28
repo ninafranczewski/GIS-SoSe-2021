@@ -1,0 +1,113 @@
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;                /*responsive*/
+    align-items: center;          /*Ausrichten in der Mitte der Seite*/
+    justify-content: center;      /*Ausrichten in der Mitte der Seite*/
+    font-size: 18px;
+    background: url(img/background.png);
+    background-size: cover;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    font-weight: lighter;
+}
+.container {
+    width: 400px;
+    max-width: 400px;
+    margin: 18px;
+    padding: 36px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.3);
+    border-radius: 4px;
+    background: white;
+}
+
+.form--hidden {
+    display: none;   /*sorgt für das Ausblenden von "Konto erstellen"*/
+}
+
+
+.form__title {
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.form__message {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.form__message--success {
+    color: green;
+}
+
+.form__message--error {
+    color: red;
+}
+
+.form__input-group {
+    margin-bottom: 18px;    /*sorgt für Abstand zwschen den Eingabefeldern*/
+}
+
+.form__input {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    border: 1px solid lightgrey;
+    outline: none;
+    background: rgb(248, 248, 248);
+}
+
+.form__input:focus {
+    border-color: pink;
+    background: white;
+}
+
+.form__input--error {
+    color: red;
+    border-color: red;
+}
+
+.form__input-error-message {
+    margin-top: 9px;
+    font-size: 12px;
+    color: red;
+}
+
+.form__button {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    background: lightpink;
+}
+
+.form__button:hover {
+    background: rgb(252, 148, 165);
+}
+
+.form__button:active {
+    transform: scale(0.98);
+}
+
+.form__text {
+    text-align: center;
+}
+
+.form__link {
+    color:rgb(252, 148, 165);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.form__link:hover {
+    text-decoration: underline;
+}

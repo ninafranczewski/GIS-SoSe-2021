@@ -1,0 +1,142 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+    background:rgb(255, 245, 234);
+}
+.container {
+    width: 100%;
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.burgerMenu {
+    width: 25px;
+    cursor: pointer;
+    display: none;
+}
+
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: grey;
+    font-size: 14px;
+}
+
+nav ul li a:hover {
+    color: rgb(252, 148, 165);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 100px 0;
+}
+
+.title {
+    flex-basis: 55%;
+    position: relative;
+    margin-left: 50px;
+}
+
+.title h2 {
+    font-size: 42px;
+}
+.title p {
+    font-size: 18px;
+    color: grey;
+    font-weight: 100;
+}
+
+button {
+    width: 150px;
+    border: 0;
+    padding: 12px 10px;
+    font-size: 18px;
+    color: white;
+    background: lightpink;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgb(252, 148, 165);
+}
+
+.burger {
+    width: 68%;
+    transform: translateX(120px);
+}
+
+@media only screen and (max-width:700px) {
+
+    nav ul{
+        width: 100%;
+        background: lightpink;
+        position: absolute;
+        top: 30px;
+        right: 0;
+        z-index: 2;
+    }
+    nav ul li {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    nav ul li a {
+        color: white;
+    }
+
+    nav ul li a:hover {
+        color: grey;
+    }
+
+    .burgerMenu{
+        display: block;
+    }
+
+    .row {
+        flex-direction: column-reverse;
+        margin: 50px 0;
+    }
+    .image {
+        width: 80%;
+        margin-bottom: 5x;
+        margin-top: 90px;
+    }
+    .burger {
+        width: 68%;
+        transform: translateX(0px);
+    }
+    
+    .title{ 
+        margin-left: 0px;
+    }
+
+    .title h2{
+        font-size: 30px;
+    }
+    .title p{
+        font-size: 14px;
+    }
+}
