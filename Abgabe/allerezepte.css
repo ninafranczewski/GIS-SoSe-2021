@@ -1,0 +1,87 @@
+img {
+    width: 100%;
+    border-radius: 1rem; 
+}
+
+html{
+    font-size: 10px;
+}
+
+main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    flex-direction: column;
+    
+}
+
+.blog-post {
+    width: 100%;
+    max-width: 98rem;
+    padding: 5rem;
+    background-color: white;
+    box-shadow: 0 1rem 7rem rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+    margin: 2rem;
+}
+
+.blog-post__img {
+    min-width: 35rem;
+    max-width: 35rem;
+    position: relative;
+    padding-right: 8rem;
+}
+
+.blog-post__title {
+    font-weight: normal;
+    font-size: 2.5rem;
+    margin: 1.5rem 0 2rem;
+    
+}
+
+.blog-post__text {
+    font-size: 1.5rem;
+    color: grey;
+}
+
+button {
+    width: 150px;
+    border: 0;
+    padding: 6px 4px;
+    font-size: 1.5rem;
+    color: white;
+    background: lightpink;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgb(252, 148, 165);
+}
+
+.icon {
+    width: 7%;
+    float: right;
+    margin-top: 50px;
+    opacity: 40%;
+    cursor: pointer;
+}
+
+.icon:hover {
+    opacity: 100%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .blog-post{
+        padding: 2.5rem;
+        flex-direction: column;
+    }
+    .blog-post__img {
+        padding-right: 0;
+    }
+}
