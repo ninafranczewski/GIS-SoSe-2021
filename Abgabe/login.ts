@@ -1,17 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("#login");
-    const createAccountForm = document.querySelector("#createAccount");
+let loginForm: HTMLFormElement = <HTMLFormElement>document.getElementById("login");
+let createAccountForm: HTMLFormElement = <HTMLFormElement>document.getElementById("createAccount");
 
-    document.querySelector("#linkCreateAccount").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.add("form--hidden");
-        createAccountForm.classList.remove("form--hidden");
-    });
+document.querySelector("#linkCreateAccount").addEventListener("click", handleClickCreateAccount);
 
-    document.querySelector("#linkLogin").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.remove("form--hidden");
-        createAccountForm.classList.add("form--hidden");
-    });
+function handleClickCreateAccount(): void {
+    loginForm.classList.add("form--hidden");
+    createAccountForm.classList.remove("form--hidden");
+}
 
-});  /* LOGIN-Seite mithilfe des Youtube Videos: https://www.youtube.com/watch?v=3GsKEtBcGTk erstellt */
+document.querySelector("#linkLogin").addEventListener("click", handleClickLogin);
+
+function handleClickLogin(): void {
+    loginForm.classList.remove("form--hidden");
+    createAccountForm.classList.add("form--hidden");
+}
+

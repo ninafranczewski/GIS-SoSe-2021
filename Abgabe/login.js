@@ -1,16 +1,14 @@
 "use strict";
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("#login");
-    const createAccountForm = document.querySelector("#createAccount");
-    document.querySelector("#linkCreateAccount").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.add("form--hidden");
-        createAccountForm.classList.remove("form--hidden");
-    });
-    document.querySelector("#linkLogin").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.remove("form--hidden");
-        createAccountForm.classList.add("form--hidden");
-    });
-}); /* LOGIN-Seite mithilfe des Youtube Videos: https://www.youtube.com/watch?v=3GsKEtBcGTk erstellt */
+let loginForm = document.getElementById("login");
+let createAccountForm = document.getElementById("createAccount");
+document.querySelector("#linkCreateAccount").addEventListener("click", handleClickCreateAccount);
+function handleClickCreateAccount() {
+    loginForm.classList.add("form--hidden");
+    createAccountForm.classList.remove("form--hidden");
+}
+document.querySelector("#linkLogin").addEventListener("click", handleClickLogin);
+function handleClickLogin() {
+    loginForm.classList.remove("form--hidden");
+    createAccountForm.classList.add("form--hidden");
+}
 //# sourceMappingURL=login.js.map

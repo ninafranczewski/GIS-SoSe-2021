@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,67 +8,81 @@
     <title>Meine Rezepte</title>
     <link rel="stylesheet" href="meinerezepte.css">
     <link rel="stylesheet" href="stylesheet.css">
+    <script src="meinerezepte.js" defer></script>
 </head>
+
 <body>
 
-<header>
-    <div class="container">
-        <div class="navbar">
-            <nav>
-                <ul>
-                    <li><a href="startseite.html">Startseite</a></li>
-                    <li><a href="allerezepte.html">Alle Rezepte</a></li>
-                    <li><a href="favoriten.html">Meine Favoriten</a></li>
-                    <li><a class="active" href="meinerezepte.html">Meine Rezepte</a></li>
-                </ul>
-            </nav>
-            <img src="img/burgerMenuIcon.png" class="burgerMenu">
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <nav>
+                    <ul>
+                        <li><a href="startseite.html">Startseite</a></li>
+                        <li><a href="allerezepte.html">Alle Rezepte</a></li>
+                        <li><a href="favoriten.html">Meine Favoriten</a></li>
+                        <li><a class="active" href="meinerezepte.html">Meine Rezepte</a></li>
+                    </ul>
+                </nav>
+                <img src="img/burgerMenuIcon.png" class="burgerMenu">
+            </div>
         </div>
-    </div>
-</header>
-<main>
-<div class="container2">
-    <form class="form" id="zutaten">
-        <h1 class="form__title">Jetzt ein neues Rezept erstellen</h1>
-        <h2 class="form__title">Zutaten</h2>
-        <div class="form__input-group">
-            <input type="text" class="form__input" autofocus placeholder=""> 
-        </div>
-        <div class="form__input-group">
-            <input type="text" class="form__input" placeholder="">
-        </div>
-        <div class="form__input-group">
-            <input type="text" class="form__input" placeholder="">
-        </div>
-        <div class="form__input-group">
-            <input type="text" class="form__input" placeholder="">
-        </div>
-        <div class="form__input-group">
-            <input type="text" class="form__input" placeholder="">
-        </div>
-        <div class="form__input-group">
-            <input type="text" class="form__input" placeholder="">
-        </div>
-        <div class="form__input-group">
-            <input type="text" class="form__input" placeholder="">
-        </div>
-        <div class="form__input-group">
-            <input type="text" class="form__input" placeholder="">
-        </div>
-        <div class="form__input-group">
-            <input type="text" class="form__input" placeholder="">
-        </div>
-        <div class="form__input-group">
-            <input type="text" class="form__input" placeholder="">
+    </header>
+    <main>
+        <div class="container2">
+            <form class="form" id="zutaten">
+                <h1 class="form__title">Jetzt ein neues Rezept erstellen</h1>
+                <h2 class="form__title">Titel</h2>
+                <div class="form__input-group">
+                    <input type="text" class="form__input" autofocus placeholder="Name des Rezeptes">
+                </div>
+                <h2 class="form__title__2">Zutaten</h2>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+                <div class="form__input-group">
+                    <input type="text" class="form__input">
+                </div>
+
+                <h2 class="form__title__2">Zubereitung</h2>
+                <div class="form__input-group">
+                    <textarea class="form__input" cols="63" rows="10"></textarea>
+                </div>
+                <button class="form__button" type="submit">erstellen</button>
+            </form>
         </div>
 
-        <h2 class="form__title__2">Zubereitung</h2>
-        <div class="form__input-group">
-            <textarea name="Nachricht" placeholder="" class="form__input"" cols="63" rows="10"></textarea>
+        <div class="container3">
+            <h1 class="form__title">Meine Rezepte</h1>
+            <button id="edit">Bearbeiten</button>
+            <button id="delete">Löschen</button>
         </div>
-        <button class="form__button" type="submit">erstellen</button>
-    </form>
 
-</main>
+    </main>
 </body>
+
 </html>
