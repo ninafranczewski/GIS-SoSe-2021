@@ -11,7 +11,7 @@
     "@types/node": "^15.6.1"
   },
   "scripts": {
-    "start": "node ServerDaten/Abgabe3.4/server/server.js"
+    "start": "node Abgabe/server.js"
   },
   "repository": {
     "type": "git",
