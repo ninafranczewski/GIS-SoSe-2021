@@ -20,7 +20,7 @@ export namespace P_3_4Server {
     let server: Http.Server = Http.createServer();
     server.listen(port);
     server.addListener("request", handleRequest);
-    
+
 
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
         console.log("Hearing");
@@ -39,8 +39,8 @@ export namespace P_3_4Server {
     }
 
     //Daten aus dem Formular in die Datenbank schreiben
-    async function writeDataBase(_jsonString: string, _mongoUrl: string): Promise <void> {
-        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+    async function writeDataBase(_jsonString: string, _mongoUrl: string): Promise<void> {
+        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_mongoUrl, options);
         await mongoClient.connect();
         //Datenbank und Collection auswählen
@@ -51,8 +51,8 @@ export namespace P_3_4Server {
         console.log("Database connection", orders != undefined);
     }
     //Daten aus der Datenbank auslesen und dann an den Client schicken
-    async function getData(_response: Http.ServerResponse, _mongoUrl: string): Promise <void> {
-        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+    async function getData(_response: Http.ServerResponse, _mongoUrl: string): Promise<void> {
+        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_mongoUrl, options);
         await mongoClient.connect();
         //Datenbank und Collection auswählen
@@ -65,12 +65,12 @@ export namespace P_3_4Server {
         _response.write("<h3>" + "Serverantwort:" + "</h3>");
         //Für die Länge des Arrays jeden Wert ausgeben
         for (let i: number = 0; i < result.length; i++) {
-            _response.write("<div>" + 
-            "<h4>" + "Eintrag" + i + "</h4>" +
-            "<p>" + result[i].name + "</p>" +
-            "<p>" + result[i].gender + "</p>" +
-            "<p>" + result[i].box + "</p>" +
-            "</div>");
+            _response.write("<div>" +
+                "<h4>" + "Eintrag" + i + "</h4>" +
+                "<p>" + result[i].name + "</p>" +
+                "<p>" + result[i].gender + "</p>" +
+                "<p>" + result[i].box + "</p>" +
+                "</div>");
         }
         _response.end();
     }

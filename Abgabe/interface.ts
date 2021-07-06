@@ -3,10 +3,10 @@ import { Url } from "url";
 export interface User {
     username: string;
     password: string;
-    favorites: Recipe[];
 }
 
-export interface Recipe {
+export interface Recipes {
+    _id: string;
     title: string;
     image: Url;
     ingredients: string;
