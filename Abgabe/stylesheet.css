@@ -86,4 +86,7 @@ nav ul li a:hover {
     .burgerMenu{
         display: block;
     }
+    main {
+        margin-top: 150px;
+    }
 }
