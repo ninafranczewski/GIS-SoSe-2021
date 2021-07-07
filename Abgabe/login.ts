@@ -22,8 +22,8 @@ namespace Semesterabgabe {
     let url: string;
 
     function freshUrl(): void {
-        url = "https://gissose2021omb.herokuapp.com"
-        //url = "http://localhost:8100";
+        //url = "https://gissose2021omb.herokuapp.com"
+        url = "http://localhost:8100";
     }
 
     //Buttons
@@ -36,16 +36,20 @@ namespace Semesterabgabe {
     //Login
     async function handleClickButtonAnmelden(_event: Event): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
+        console.log("Formulardaten " + formData);
+        
         freshUrl();
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         url = url + "/login" + "?" + query.toString();
+        console.log(url);
+        
         let userLogin: Response = await fetch(url);
         let userLoginS: string =  await userLogin.text();
 
         if (userLoginS == "true") {
             let username: string = (<HTMLInputElement><unknown>document.getElementById("username")).value; 
             localStorage.clear();
-            localStorage.setItem("username", username);         //Usernamen im LocalStorage speichern
+            localStorage.setItem("username", username); //User speichern
             window.location.href = "allerezepte.html";
         }
         else 
@@ -54,11 +58,15 @@ namespace Semesterabgabe {
 
 
     async function handleClickButtonJetztRegistrieren(_event: Event): Promise<void> {
-        //neuen Nutzer in Datenbank einfügen
-        let formData: FormData = new FormData(document.forms[0]);
+        //neuen Nutzer in Datenbank anlegen
+        let formData: FormData = new FormData(document.forms[1]);
+        console.log("Formulardaten " + formData);
+
         freshUrl();
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         url = url + "/createAccount" + "?" + query.toString();
+        console.log(url);
+        
         let userReg: Response = await fetch(url);
         let userRegS: string =  await userReg.text();
 

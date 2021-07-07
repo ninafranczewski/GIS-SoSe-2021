@@ -40,22 +40,25 @@ var Semesterabgabe;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url = Url.parse(_request.url, true);
+            console.log(url);
             //Login
             if (url.pathname == "/login") {
                 //Request Login
-                if (await user.findOne({ username: url.query.username, password: url.query.password }))
-                    _response.write("Sie sind eingeloggt");
+                console.log("Login");
+                if (await user.findOne({ "username": url.query.username, "password": url.query.password }))
+                    _response.write("true");
                 else
-                    _response.write("Es ist kein Profil mit diesen Daten vorhanden");
+                    _response.write("false");
             }
             //neuer Account
             if (url.pathname == "/createAccount") {
                 //Request CreateAccount
-                if (await user.findOne({ username: url.query.username }))
-                    _response.write("Der Nutzername ist bereits vergeben");
+                console.log("createAccount");
+                if (await user.findOne({ "username": url.query.username }))
+                    _response.write("false");
                 else {
                     user.insertOne(url.query);
-                    _response.write("Ihr Account wurde erfolgreich erstellt");
+                    _response.write("true");
                 }
             }
         }
