@@ -43,8 +43,6 @@ var Semesterabgabe;
             //LOGIN
             if (url.pathname == "/login") {
                 //Request Login
-                _response.setHeader("content-type", "text/html; charset=utf-8");
-                _response.setHeader("Access-Control-Allow-Origin", "*");
                 let find = await user.findOne({ "username": url.query.username.toString(), "password": url.query.password.toString() });
                 let answer = { message: undefined, error: undefined };
                 if (find != undefined)
@@ -56,8 +54,6 @@ var Semesterabgabe;
             }
             if (url.pathname == "/createAccount") {
                 //Request CreateAccount
-                _response.setHeader("content-type", "text/html; charset=utf-8");
-                _response.setHeader("Access-Control-Allow-Origin", "*");
                 let nutzer = await user.findOne({ "username": url.query.username.toString() });
                 if (nutzer != undefined)
                     _response.write("Der gewählte Nutzername ist bereits vorhanden");

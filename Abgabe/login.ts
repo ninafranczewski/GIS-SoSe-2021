@@ -1,45 +1,55 @@
-//Zwischen Login- und CreateAccount-Formular wechseln
-let loginForm: HTMLFormElement = <HTMLFormElement>document.getElementById("login");
-let createAccountForm: HTMLFormElement = <HTMLFormElement>document.getElementById("createAccount");
+namespace Semesterabgabe {
 
-document.querySelector("#linkCreateAccount").addEventListener("click", handleClickCreateAccount);
+    //Zwischen Login- und CreateAccount-Formular wechseln
+    let loginForm: HTMLFormElement = <HTMLFormElement>document.getElementById("login");
+    let createAccountForm: HTMLFormElement = <HTMLFormElement>document.getElementById("createAccount");
 
-function handleClickCreateAccount(): void {
-    loginForm.classList.add("form--hidden");
-    createAccountForm.classList.remove("form--hidden");
-}
+    document.querySelector("#linkCreateAccount").addEventListener("click", handleClickCreateAccount);
 
-document.querySelector("#linkLogin").addEventListener("click", handleClickLogin);
+    function handleClickCreateAccount(): void {
+        loginForm.classList.add("form--hidden");
+        createAccountForm.classList.remove("form--hidden");
+    }
 
-function handleClickLogin(): void {
-    loginForm.classList.remove("form--hidden");
-    createAccountForm.classList.add("form--hidden");
-}
+    document.querySelector("#linkLogin").addEventListener("click", handleClickLogin);
 
-//Allgemeine url
-let url: string;
+    function handleClickLogin(): void {
+        loginForm.classList.remove("form--hidden");
+        createAccountForm.classList.add("form--hidden");
+    }
 
-function freshUrl(): void {
-    url = "https://gissose2021omb.herokuapp.com"
-    //url = "http://localhost:8100";
-}
+    //Allgemeine url
+    let url: string;
 
-//Buttons
-document.getElementById("anmelden").addEventListener("click", handleClickButtonAnmelden);
-document.getElementById("registrieren").addEventListener("click", handleClickButtonJetztRegistrieren);
+    function freshUrl(): void {
+        url = "https://gissose2021omb.herokuapp.com"
+        //url = "http://localhost:8100";
+    }
 
-async function handleClickButtonAnmelden(): Promise<void> {
-    //Nutzer in Datenbank angelegt?
-    freshUrl();
-    let formData: FormData = new FormData(document.forms[0]);
-    let query: URLSearchParams = new URLSearchParams(<any>formData);
-    
-    //query an die Url anhängen
-    url = url + "/login" + "?" + query.toString();
-    
-}
+    //Buttons
+    document.getElementById("anmelden").addEventListener("click", handleClickButtonAnmelden);
+    document.getElementById("registrieren").addEventListener("click", handleClickButtonJetztRegistrieren);
+
+    async function handleClickButtonAnmelden(): Promise<void> {
+        //Nutzer in Datenbank angelegt?
+        freshUrl();
+        let formData: FormData = new FormData(document.forms[0]);
+        let query: URLSearchParams = new URLSearchParams(<any>formData);
+
+        //query an die Url anhängen
+        url = url + "/login" + "?" + query.toString();
+        await fetch(url);
+    }
 
 
-async function handleClickButtonJetztRegistrieren(): Promise<void> {
-    //neuen Nutzer in Datenbank einfügen
+    async function handleClickButtonJetztRegistrieren(): Promise<void> {
+        //neuen Nutzer in Datenbank einfügen
+        freshUrl();
+        let formData: FormData = new FormData(document.forms[0]);
+        let query: URLSearchParams = new URLSearchParams(<any>formData);
+
+        //query an die Url anhängen
+        url = url + "/login" + "?" + query.toString();
+        await fetch(url);
+    }
 }

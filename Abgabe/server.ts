@@ -57,8 +57,6 @@ export namespace Semesterabgabe {
             //LOGIN
             if (url.pathname == "/login") {
                 //Request Login
-                _response.setHeader("content-type", "text/html; charset=utf-8");
-                _response.setHeader("Access-Control-Allow-Origin", "*");
 
                 let find: Interface.User = await user.findOne({ "username": url.query.username.toString(), "password": url.query.password.toString() });
 
@@ -74,8 +72,6 @@ export namespace Semesterabgabe {
 
             if (url.pathname == "/createAccount") {
                 //Request CreateAccount
-                _response.setHeader("content-type", "text/html; charset=utf-8");
-                _response.setHeader("Access-Control-Allow-Origin", "*");
 
                 let nutzer: Interface.User = await user.findOne({ "username": url.query.username.toString() });
                 if (nutzer != undefined) _response.write("Der gewählte Nutzername ist bereits vorhanden");
@@ -85,7 +81,7 @@ export namespace Semesterabgabe {
                     await writeDataBase(mongoURL);
                 }
             }
-
+        
         }
         _response.end();
     }
