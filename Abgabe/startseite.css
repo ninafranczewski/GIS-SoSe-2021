@@ -24,19 +24,25 @@
     color: grey;
 }
 
-button {
+.button {
     width: 150px;
     border: 0;
     padding: 12px 10px;
-    font-size: 18px;
-    color: white;
     background: lightpink;
     border-radius: 4px;
     cursor: pointer;
+    text-align: center;
 }
 
-button:hover {
+.button:hover {
     background: rgb(252, 148, 165);
+}
+
+.login {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+
 }
 
 .bake {
