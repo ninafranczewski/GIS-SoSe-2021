@@ -22,8 +22,8 @@ namespace Semesterabgabe {
     let url: string;
 
     function freshUrl(): void {
-        //url = "https://gissose2021omb.herokuapp.com"
-        url = "http://localhost:8100";
+        url = "https://gissose2021omb.herokuapp.com"
+        //url = "http://localhost:8100";
     }
 
     //Buttons
@@ -42,7 +42,7 @@ namespace Semesterabgabe {
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         url = url + "/login" + "?" + query.toString();
         console.log(url);
-        
+
         let userLogin: Response = await fetch(url);
         let userLoginS: string =  await userLogin.text();
 
