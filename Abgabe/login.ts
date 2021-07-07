@@ -1,10 +1,4 @@
-let url: string;
-
-function freshUrl(): void {
-    url = "https://gissose2021omb.herokuapp.com"
-    //url = "http://localhost:8100";
-}
-
+//Zwischen Login- und CreateAccount-Formular wechseln
 let loginForm: HTMLFormElement = <HTMLFormElement>document.getElementById("login");
 let createAccountForm: HTMLFormElement = <HTMLFormElement>document.getElementById("createAccount");
 
@@ -22,27 +16,27 @@ function handleClickLogin(): void {
     createAccountForm.classList.add("form--hidden");
 }
 
-/*document.getElementById("anmelden").addEventListener("click", handleClickButtonAnmelden);
-document.getElementById("registrieren").addEventListener("click", handleClickButtonJetztRegistrieren);
-*/
+//Allgemeine url
+let url: string;
 
-let buttonLogin: HTMLButtonElement = <HTMLButtonElement>document.getElementById("anmelden");
-buttonLogin.addEventListener("click", handleClickButtonAnmelden);
+function freshUrl(): void {
+    url = "https://gissose2021omb.herokuapp.com"
+    //url = "http://localhost:8100";
+}
+
+//Buttons
+document.getElementById("anmelden").addEventListener("click", handleClickButtonAnmelden);
+document.getElementById("registrieren").addEventListener("click", handleClickButtonJetztRegistrieren);
 
 async function handleClickButtonAnmelden(): Promise<void> {
     //Nutzer in Datenbank angelegt?
     freshUrl();
     let formData: FormData = new FormData(document.forms[0]);
     let query: URLSearchParams = new URLSearchParams(<any>formData);
+    
     //query an die Url anhängen
     url = url + "/login" + "?" + query.toString();
-    let response: Response = await fetch(url);
-    let message: string = await response.text();
-    let answer: HTMLElement = <HTMLElement>document.getElementById("serverResponse");
-    answer.innerHTML = message;
-    console.log(message);
-
-    (<HTMLElement>document.getElementById("serverResponse")).innerHTML = message;
+    
 }
 
 

@@ -27,13 +27,11 @@ main {
     align-items: center;
     border-radius: 1rem;
     margin: 2rem;
+    
 }
 
-.blog-post__img {
-    min-width: 35rem;
-    max-width: 35rem;
-    position: relative;
-    padding-right: 8rem;
+.blog-post__info {
+    width: 100%;
 }
 
 .blog-post__title {
@@ -48,23 +46,8 @@ main {
     color: grey;
 }
 
-button {
-    width: 150px;
-    border: 0;
-    padding: 6px 4px;
-    font-size: 1.5rem;
-    color: white;
-    background: lightpink;
-    border-radius: 0.5rem;
-    cursor: pointer;
-}
-
-button:hover {
-    background: rgb(252, 148, 165);
-}
-
 .icon {
-    width: 7%;
+    width: 4%;
     float: right;
     margin-top: 75px;
     opacity: 40%;
@@ -80,8 +63,5 @@ button:hover {
     .blog-post{
         padding: 2.5rem;
         flex-direction: column;
-    }
-    .blog-post__img {
-        padding-right: 0;
     }
 }

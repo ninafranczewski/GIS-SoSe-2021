@@ -4,7 +4,6 @@ exports.Semesterabgabe = void 0;
 const Http = require("http");
 const Url = require("url");
 const Mongo = require("mongodb");
-//import * as Interface from "./interface";
 var Semesterabgabe;
 (function (Semesterabgabe) {
     let user;
@@ -43,13 +42,33 @@ var Semesterabgabe;
             let url = Url.parse(_request.url, true);
             //LOGIN
             if (url.pathname == "/login") {
-                //Request LOGIN
+                //Request Login
                 _response.setHeader("content-type", "text/html; charset=utf-8");
                 _response.setHeader("Access-Control-Allow-Origin", "*");
-                user.insertOne(url.query);
-                _response.write(JSON.stringify(await (user.find().toArray())));
+                let find = await user.findOne({ "username": url.query.username.toString(), "password": url.query.password.toString() });
+                let answer = { message: undefined, error: undefined };
+                if (find != undefined)
+                    answer.message = "Sie sind eingeloggt";
+                else
+                    answer.error = "Es konnte leider kein Profil gefunden werden";
+                console.log(answer);
+                _response.write(JSON.stringify(answer));
+            }
+            if (url.pathname == "/createAccount") {
+                //Request CreateAccount
+                _response.setHeader("content-type", "text/html; charset=utf-8");
+                _response.setHeader("Access-Control-Allow-Origin", "*");
+                let nutzer = await user.findOne({ "username": url.query.username.toString() });
+                if (nutzer != undefined)
+                    _response.write("Der gewählte Nutzername ist bereits vorhanden");
+                else {
+                    user.insertOne(url.query);
+                    _response.write("Ihr neues Profil wurde erfolgreich erstellt");
+                    await writeDataBase(mongoURL);
+                }
             }
         }
+        _response.end();
     }
 })(Semesterabgabe = exports.Semesterabgabe || (exports.Semesterabgabe = {}));
 //# sourceMappingURL=server.js.map

@@ -1,5 +1,3 @@
-import { Url } from "url";
-
 export interface User {
     username: string;
     password: string;
@@ -8,8 +6,12 @@ export interface User {
 export interface Recipes {
     _id: string;
     title: string;
-    image: Url;
     ingredients: string;
     preparation: string;
+}
+
+export interface UserLogin {
+    message: string;
+    error: string;
 }
 
