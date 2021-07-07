@@ -27,29 +27,45 @@ namespace Semesterabgabe {
     }
 
     //Buttons
-    document.getElementById("anmelden").addEventListener("click", handleClickButtonAnmelden);
-    document.getElementById("registrieren").addEventListener("click", handleClickButtonJetztRegistrieren);
+    let loginButton: HTMLButtonElement = <HTMLButtonElement> <unknown>document.getElementById("anmelden");
+    loginButton.addEventListener("click", handleClickButtonAnmelden);
 
-    async function handleClickButtonAnmelden(): Promise<void> {
-        //Nutzer in Datenbank angelegt?
-        freshUrl();
+    let registerButton: HTMLButtonElement = <HTMLButtonElement> <unknown>document.getElementById("registrieren");
+    registerButton.addEventListener("click", handleClickButtonJetztRegistrieren);
+
+    //Login
+    async function handleClickButtonAnmelden(_event: Event): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
+        freshUrl();
         let query: URLSearchParams = new URLSearchParams(<any>formData);
-
-        //query an die Url anhängen
         url = url + "/login" + "?" + query.toString();
-        await fetch(url);
+        let userLogin: Response = await fetch(url);
+        let userLoginS: string =  await userLogin.text();
+
+        if (userLoginS == "true") {
+            let username: string = (<HTMLInputElement><unknown>document.getElementById("username")).value; 
+            localStorage.clear();
+            localStorage.setItem("username", username);         //Usernamen im LocalStorage speichern
+            window.location.href = "allerezepte.html";
+        }
+        else 
+            alert("Ihre eingegebenen Daten sind nicht korrekt");
     }
 
 
-    async function handleClickButtonJetztRegistrieren(): Promise<void> {
+    async function handleClickButtonJetztRegistrieren(_event: Event): Promise<void> {
         //neuen Nutzer in Datenbank einfügen
-        freshUrl();
         let formData: FormData = new FormData(document.forms[0]);
+        freshUrl();
         let query: URLSearchParams = new URLSearchParams(<any>formData);
+        url = url + "/createAccount" + "?" + query.toString();
+        let userReg: Response = await fetch(url);
+        let userRegS: string =  await userReg.text();
 
-        //query an die Url anhängen
-        url = url + "/login" + "?" + query.toString();
-        await fetch(url);
+        if (userRegS == "true") {
+            alert ("Sie haben sich erfolgreich registriert")
+        }
+        else 
+            alert ("Der gewählte Nutzername ist leider schon vergeben")
     }
 }

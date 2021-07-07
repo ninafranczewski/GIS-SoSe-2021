@@ -1,8 +1,6 @@
 import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
-import * as Interface from "./interface";
-
 
 export namespace Semesterabgabe {
 
@@ -54,34 +52,28 @@ export namespace Semesterabgabe {
 
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 
-            //LOGIN
+            //Login
             if (url.pathname == "/login") {
                 //Request Login
 
-                let find: Interface.User = await user.findOne({ "username": url.query.username.toString(), "password": url.query.password.toString() });
-
-                let answer: Interface.UserLogin = { message: undefined, error: undefined };
-
-                if (find != undefined)
-                    answer.message = "Sie sind eingeloggt";
-                else answer.error = "Es konnte leider kein Profil gefunden werden";
-                console.log(answer);
-
-                _response.write(JSON.stringify(answer));
+                if (await user.findOne({ username: url.query.username, password: url.query.password }))
+                _response.write("Sie sind eingeloggt");
+                else
+                _response.write("Es ist kein Profil mit diesen Daten vorhanden");
             }
-
+            
+            //neuer Account
             if (url.pathname == "/createAccount") {
                 //Request CreateAccount
 
-                let nutzer: Interface.User = await user.findOne({ "username": url.query.username.toString() });
-                if (nutzer != undefined) _response.write("Der gewählte Nutzername ist bereits vorhanden");
+                if (await user.findOne({username: url.query.username})) 
+                    _response.write("Der Nutzername ist bereits vergeben");
                 else {
                     user.insertOne(url.query);
-                    _response.write("Ihr neues Profil wurde erfolgreich erstellt");
-                    await writeDataBase(mongoURL);
-                }
+                    _response.write("Ihr Account wurde erfolgreich erstellt");
+                } 
             }
-        
+
         }
         _response.end();
     }

@@ -21,25 +21,40 @@ var Semesterabgabe;
         //url = "http://localhost:8100";
     }
     //Buttons
-    document.getElementById("anmelden").addEventListener("click", handleClickButtonAnmelden);
-    document.getElementById("registrieren").addEventListener("click", handleClickButtonJetztRegistrieren);
-    async function handleClickButtonAnmelden() {
-        //Nutzer in Datenbank angelegt?
-        freshUrl();
+    let loginButton = document.getElementById("anmelden");
+    loginButton.addEventListener("click", handleClickButtonAnmelden);
+    let registerButton = document.getElementById("registrieren");
+    registerButton.addEventListener("click", handleClickButtonJetztRegistrieren);
+    //Login
+    async function handleClickButtonAnmelden(_event) {
         let formData = new FormData(document.forms[0]);
+        freshUrl();
         let query = new URLSearchParams(formData);
-        //query an die Url anhängen
         url = url + "/login" + "?" + query.toString();
-        await fetch(url);
+        let userLogin = await fetch(url);
+        let userLoginS = await userLogin.text();
+        if (userLoginS == "true") {
+            let username = document.getElementById("username").value;
+            localStorage.clear();
+            localStorage.setItem("username", username); //Usernamen im LocalStorage speichern
+            window.location.href = "allerezepte.html";
+        }
+        else
+            alert("Ihre eingegebenen Daten sind nicht korrekt");
     }
-    async function handleClickButtonJetztRegistrieren() {
+    async function handleClickButtonJetztRegistrieren(_event) {
         //neuen Nutzer in Datenbank einfügen
-        freshUrl();
         let formData = new FormData(document.forms[0]);
+        freshUrl();
         let query = new URLSearchParams(formData);
-        //query an die Url anhängen
-        url = url + "/login" + "?" + query.toString();
-        await fetch(url);
+        url = url + "/createAccount" + "?" + query.toString();
+        let userReg = await fetch(url);
+        let userRegS = await userReg.text();
+        if (userRegS == "true") {
+            alert("Sie haben sich erfolgreich registriert");
+        }
+        else
+            alert("Der gewählte Nutzername ist leider schon vergeben");
     }
 })(Semesterabgabe || (Semesterabgabe = {}));
 //# sourceMappingURL=login.js.map

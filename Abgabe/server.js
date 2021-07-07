@@ -40,27 +40,22 @@ var Semesterabgabe;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url = Url.parse(_request.url, true);
-            //LOGIN
+            //Login
             if (url.pathname == "/login") {
                 //Request Login
-                let find = await user.findOne({ "username": url.query.username.toString(), "password": url.query.password.toString() });
-                let answer = { message: undefined, error: undefined };
-                if (find != undefined)
-                    answer.message = "Sie sind eingeloggt";
+                if (await user.findOne({ username: url.query.username, password: url.query.password }))
+                    _response.write("Sie sind eingeloggt");
                 else
-                    answer.error = "Es konnte leider kein Profil gefunden werden";
-                console.log(answer);
-                _response.write(JSON.stringify(answer));
+                    _response.write("Es ist kein Profil mit diesen Daten vorhanden");
             }
+            //neuer Account
             if (url.pathname == "/createAccount") {
                 //Request CreateAccount
-                let nutzer = await user.findOne({ "username": url.query.username.toString() });
-                if (nutzer != undefined)
-                    _response.write("Der gewählte Nutzername ist bereits vorhanden");
+                if (await user.findOne({ username: url.query.username }))
+                    _response.write("Der Nutzername ist bereits vergeben");
                 else {
                     user.insertOne(url.query);
-                    _response.write("Ihr neues Profil wurde erfolgreich erstellt");
-                    await writeDataBase(mongoURL);
+                    _response.write("Ihr Account wurde erfolgreich erstellt");
                 }
             }
         }
