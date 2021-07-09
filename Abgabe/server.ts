@@ -72,7 +72,7 @@ export namespace Semesterabgabe {
                 if (await user.findOne({ "username": url.query.username }))
                     _response.write("false");
                 else {
-                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": {} });
+                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": Array });
                     _response.write("true");
                 }
             }
