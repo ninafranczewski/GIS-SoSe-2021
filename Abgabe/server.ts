@@ -72,7 +72,7 @@ export namespace Semesterabgabe {
                 if (await user.findOne({ "username": url.query.username }))
                     _response.write("false");
                 else {
-                    user.insertOne(url.query);
+                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": [] });
                     _response.write("true");
                 }
             }
@@ -80,12 +80,13 @@ export namespace Semesterabgabe {
             if (url.pathname == "/erstellen") {
                 //Request Rezept erstellen
                 console.log("Rezept erstellen");
-                recipe.insertOne({ "titel": url.query.titel, "zutat1": url.query.zutat1, "zutat2": url.query.zutat2, "zutat3": url.query.zutat3, "zutat4": url.query.zutat4, "zutat5": url.query.zutat5, "zutat6": url.query.zutat6, "zutat7": url.query.zutat7, "zutat8": url.query.zutat8, "zutat9": url.query.zutat9, "zutat10": url.query.zutat10, "zubereitung": url.query.zubereitung });
+                recipe.insertOne({ "user": url.query.username, "titel": url.query.titel, "zutat1": url.query.zutat1, "zutat2": url.query.zutat2, "zutat3": url.query.zutat3, "zutat4": url.query.zutat4, "zutat5": url.query.zutat5, "zutat6": url.query.zutat6, "zutat7": url.query.zutat7, "zutat8": url.query.zutat8, "zutat9": url.query.zutat9, "zutat10": url.query.zutat10, "zubereitung": url.query.zubereitung });
 
             }
 
             if (url.pathname == "/holeRezept") {
-                let result = await recipe.findOne({ "titel": url.query.titel });
+                let cursor: Mongo.Cursor = recipe.find({ "user": url.query.username });
+                let result = await cursor.toArray();
                 _response.write(JSON.stringify(result));
             }
 
@@ -93,6 +94,21 @@ export namespace Semesterabgabe {
                 let cursor: Mongo.Cursor = recipe.find();
                 let result = await cursor.toArray();
                 _response.write(JSON.stringify(result));
+            }
+
+            if (url.pathname == "/fav") {
+                let user1 = await user.findOne({ "username": url.query.username });
+                let favoriten: any[] = user1["favoriten"]
+                favoriten.push({ "rezept": url.query.rezept, "user": url.query.user });
+                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten })
+            }
+
+            if (url.pathname == "/favAway") {
+                let user1 = await user.findOne({ "username": url.query.username });
+                let favoriten: any[] = user1["favoriten"]
+                let favourite = favoriten.find(e => e.rezept == url.query.rezept && e.user == url.query.user);
+                favoriten.splice(favoriten.indexOf(favourite), 1)
+                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten })
             }
 
         }

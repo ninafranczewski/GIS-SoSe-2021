@@ -1,7 +1,6 @@
 "use strict";
 var Semesterabgabe;
 (function (Semesterabgabe) {
-    document.querySelector(".icon").addEventListener("click", handleClickIcon);
     function handleClickIcon() {
     }
     //Allgemeine url
@@ -17,31 +16,45 @@ var Semesterabgabe;
         let result = await fetch(url);
         let output = await result.text();
         let objekt = JSON.parse(output);
-        let rezept = document.getElementById("neuesRezept");
-        let rezeptTitel = document.createElement("h1");
-        rezeptTitel.textContent = objekt["titel"];
-        rezept.appendChild(rezeptTitel);
-        let zutaten = document.createElement("h2");
-        zutaten.textContent = "Zutaten";
-        rezept.appendChild(zutaten);
-        let zutaten1 = document.createElement("p");
-        let zutatenliste = "";
-        for (let key of Object.keys(objekt)) {
-            if (key.includes("zutat")) {
-                let value = objekt[key];
-                if (value !== "") {
-                    zutatenliste += " " + value;
+        let rezept = document.getElementById("recipeContainer");
+        console.log(objekt);
+        for (let rezeptEintrag of objekt) {
+            let blogPost = document.createElement("div");
+            rezept.appendChild(blogPost);
+            let blogPostInfo = document.createElement("div");
+            blogPost.appendChild(blogPostInfo);
+            let blogPostInfoIcon = document.createElement("div");
+            blogPostInfo.appendChild(blogPostInfoIcon);
+            let blogPostInfoIconImg = document.createElement("img");
+            blogPostInfoIconImg.addEventListener("click", handleClickIcon);
+            blogPostInfoIconImg.src = "img/icon.png";
+            blogPostInfoIconImg.alt = "heart-icon";
+            blogPostInfoIcon.appendChild(blogPostInfoIconImg);
+            let rezeptTitel = document.createElement("h1");
+            rezeptTitel.textContent = rezeptEintrag["titel"];
+            blogPostInfo.appendChild(rezeptTitel);
+            let zutaten = document.createElement("h2");
+            zutaten.textContent = "Zutaten";
+            blogPostInfo.appendChild(zutaten);
+            let zutaten1 = document.createElement("p");
+            let zutatenliste = "";
+            for (let key of Object.keys(rezeptEintrag)) {
+                if (key.includes("zutat")) {
+                    let value = rezeptEintrag[key];
+                    if (value !== "") {
+                        zutatenliste += " " + value;
+                    }
                 }
             }
+            zutaten1.textContent = zutatenliste.trim(); //entfernt alle Leerzeichen vor und nach dem String
+            blogPostInfo.appendChild(zutaten1);
+            let zubereitung = document.createElement("h2");
+            zubereitung.textContent = "Zubereitung";
+            blogPostInfo.appendChild(zubereitung);
+            let zubereitungText = document.createElement("p");
+            zubereitungText.textContent = rezeptEintrag["zubereitung"];
+            blogPostInfo.appendChild(zubereitungText);
         }
-        zutaten1.textContent = zutatenliste.trim(); //entfernt alle Leerzeichen vor und nach dem String
-        rezept.appendChild(zutaten1);
-        let zubereitung = document.createElement("h2");
-        zubereitung.textContent = "Zubereitung";
-        rezept.appendChild(zubereitung);
-        let zubereitungText = document.createElement("p");
-        zubereitungText.textContent = objekt["zubereitung"];
-        rezept.appendChild(zubereitungText);
     }
     recipes();
 })(Semesterabgabe || (Semesterabgabe = {}));
