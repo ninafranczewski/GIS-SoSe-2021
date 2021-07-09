@@ -4,8 +4,8 @@ var Semesterabgabe;
     //Allgemeine url
     let url;
     function freshUrl() {
-        //url = "https://gissose2021omb.herokuapp.com"
-        url = "http://localhost:8100";
+        url = "https://gissose2021omb.herokuapp.com";
+        //url = "http://localhost:8100";
     }
     //Buttons
     let bearbeiten = document.getElementById("edit");
