@@ -90,7 +90,7 @@ export namespace Semesterabgabe {
             }
 
             if (url.pathname == "/holeRezepte") {
-                let result = await recipe.find({});
+                let result = await recipe.find({}).toArray();
                 _response.write(JSON.stringify(result));
             }
 
