@@ -30,7 +30,7 @@ var Semesterabgabe;
     }
     async function loadRecipe(nameRezept) {
         freshUrl();
-        url = url + "/holeRezept" + "?" + nameRezept;
+        url = url + "/holeRezept" + "?titel=" + nameRezept;
         console.log(url);
         let result = await fetch(url);
         console.log(result);

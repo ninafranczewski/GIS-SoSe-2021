@@ -42,7 +42,7 @@ namespace Semesterabgabe {
 
     async function loadRecipe (nameRezept: string): Promise<void> {
         freshUrl();
-        url = url + "/holeRezept" + "?" + nameRezept;
+        url = url + "/holeRezept" + "?titel=" + nameRezept;
         console.log(url);
         let result: Response = await fetch(url);
         console.log(result);
