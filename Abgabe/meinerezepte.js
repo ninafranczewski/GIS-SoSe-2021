@@ -33,17 +33,9 @@ var Semesterabgabe;
         url = url + "/holeRezept" + "?titel=" + nameRezept;
         console.log(url);
         let result = await fetch(url);
-        console.log(result);
+        let output = await result.text();
+        let objekt = JSON.parse(output);
         let rezept = document.getElementById("neuesRezept");
-        /*<h1 class="blog-post__title">Apfelkuchen</h1>
-                <h2 class="blog-post__text">Zutaten</h2>
-                <p class="blog-post__text">
-                    100g Mehl | 20g Zucker | 50g Butter
-                </p>
-                <h2 class="blog-post__text">Zubereitung</h2>
-                <p class="blog-post__text">
-                    alles verrühren
-                </p>*/
         let rezeptTitel = document.createElement("h1");
         rezeptTitel.textContent = nameRezept;
         rezept.appendChild(rezeptTitel);
@@ -51,8 +43,23 @@ var Semesterabgabe;
         zutaten.textContent = "Zutaten";
         rezept.appendChild(zutaten);
         let zutaten1 = document.createElement("p");
-        //zutaten1.textContent = ;
+        let zutatenliste = "";
+        for (let key of Object.keys(objekt)) {
+            if (key.includes("zutat")) {
+                let value = objekt[key];
+                if (value !== "") {
+                    zutatenliste += " " + value;
+                }
+            }
+        }
+        zutaten1.textContent = zutatenliste.trim(); //entfernt alle Leerzeichen vor und nach dem String
         rezept.appendChild(zutaten1);
+        let zubereitung = document.createElement("h2");
+        zubereitung.textContent = "Zubereitung";
+        rezept.appendChild(zubereitung);
+        let zubereitungText = document.createElement("p");
+        zubereitungText.textContent = objekt["zubereitung"];
+        rezept.appendChild(zubereitungText);
     }
     async function handleClickEdit() {
     }

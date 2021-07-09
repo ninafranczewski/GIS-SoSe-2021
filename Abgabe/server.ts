@@ -89,6 +89,11 @@ export namespace Semesterabgabe {
                 _response.write(JSON.stringify(result));
             }
 
+            if (url.pathname == "/holeRezepte") {
+                let result = await recipe.find({});
+                _response.write(JSON.stringify(result));
+            }
+
         }
         _response.end();
     }

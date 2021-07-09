@@ -23,7 +23,7 @@ namespace Semesterabgabe {
     async function handleClickSubmit(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
         console.log("Formulardaten " + formData);
-        
+
         freshUrl();
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         url = url + "/erstellen" + "?" + query.toString();
@@ -34,29 +34,22 @@ namespace Semesterabgabe {
 
         let data: HTMLElement = <HTMLElement>document.getElementById("server");
         data.innerHTML = submitS;
-    
+
         await fetch(url);
         loadRecipe(query.get("titel"));
 
     }
 
-    async function loadRecipe (nameRezept: string): Promise<void> {
+    async function loadRecipe(nameRezept: string): Promise<void> {
         freshUrl();
         url = url + "/holeRezept" + "?titel=" + nameRezept;
         console.log(url);
         let result: Response = await fetch(url);
-        console.log(result);
+        let output: string = await result.text();
+
+        let objekt = JSON.parse(output)
         let rezept: HTMLElement = <HTMLElement>document.getElementById("neuesRezept");
-        /*<h1 class="blog-post__title">Apfelkuchen</h1>
-                <h2 class="blog-post__text">Zutaten</h2>
-                <p class="blog-post__text">
-                    100g Mehl | 20g Zucker | 50g Butter
-                </p>
-                <h2 class="blog-post__text">Zubereitung</h2>
-                <p class="blog-post__text">
-                    alles verrühren
-                </p>*/
-        
+
         let rezeptTitel = document.createElement("h1");
         rezeptTitel.textContent = nameRezept;
         rezept.appendChild(rezeptTitel);
@@ -66,8 +59,27 @@ namespace Semesterabgabe {
         rezept.appendChild(zutaten);
 
         let zutaten1 = document.createElement("p");
-        //zutaten1.textContent = ;
+        let zutatenliste: string = ""
+        for (let key of Object.keys(objekt)) {
+            if (key.includes("zutat")) {
+                let value = objekt[key];
+                if (value !== "") {
+                    zutatenliste += " " + value;
+                }
+
+            }
+        }
+        zutaten1.textContent = zutatenliste.trim(); //entfernt alle Leerzeichen vor und nach dem String
         rezept.appendChild(zutaten1);
+
+        let zubereitung = document.createElement("h2");
+        zubereitung.textContent = "Zubereitung";
+        rezept.appendChild(zubereitung);
+
+        let zubereitungText = document.createElement("p");
+        zubereitungText.textContent = objekt["zubereitung"];
+        rezept.appendChild(zubereitungText);
+
     }
 
     async function handleClickEdit(): Promise<void> {
