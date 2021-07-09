@@ -22,8 +22,8 @@ namespace Semesterabgabe {
     let url: string;
 
     function freshUrl(): void {
-        url = "https://gissose2021omb.herokuapp.com"
-        //url = "http://localhost:8100";
+        //url = "https://gissose2021omb.herokuapp.com"
+        url = "http://localhost:8100";
     }
 
     //Buttons
@@ -59,7 +59,7 @@ namespace Semesterabgabe {
 
     async function handleClickButtonJetztRegistrieren(_event: Event): Promise<void> {
         //neuen Nutzer in Datenbank anlegen
-        let formData: FormData = new FormData(document.forms[1]);
+        let formData: FormData = new FormData(document.forms[1]); //Registrier-Formular wird benötigt
         console.log("Formulardaten " + formData);
 
         freshUrl();
@@ -71,9 +71,9 @@ namespace Semesterabgabe {
         let userRegS: string =  await userReg.text();
 
         if (userRegS == "true") {
-            alert ("Sie haben sich erfolgreich registriert")
+            alert ("Sie haben sich erfolgreich ein neues Konto erstellt")
         }
         else 
-            alert ("Der gewählte Nutzername ist leider schon vergeben")
+            alert ("Der gewählte Nutzername ist bereits vergeben")
     }
 }

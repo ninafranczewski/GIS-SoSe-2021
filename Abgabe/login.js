@@ -46,7 +46,7 @@ var Semesterabgabe;
     }
     async function handleClickButtonJetztRegistrieren(_event) {
         //neuen Nutzer in Datenbank anlegen
-        let formData = new FormData(document.forms[1]);
+        let formData = new FormData(document.forms[1]); //Registrier-Formular wird benötigt
         console.log("Formulardaten " + formData);
         freshUrl();
         let query = new URLSearchParams(formData);
@@ -55,10 +55,10 @@ var Semesterabgabe;
         let userReg = await fetch(url);
         let userRegS = await userReg.text();
         if (userRegS == "true") {
-            alert("Sie haben sich erfolgreich registriert");
+            alert("Sie haben sich erfolgreich ein neues Konto erstellt");
         }
         else
-            alert("Der gewählte Nutzername ist leider schon vergeben");
+            alert("Der gewählte Nutzername ist bereits vergeben");
     }
 })(Semesterabgabe || (Semesterabgabe = {}));
 //# sourceMappingURL=login.js.map

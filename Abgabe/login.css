@@ -33,18 +33,7 @@ h1 {
     text-align: center;
 }
 
-.form__message {
-    text-align: center;
-    margin-bottom: 18px;
-}
 
-.form__message--success {
-    color: green;
-}
-
-.form__message--error {
-    color: red;
-}
 
 .form__input-group {
     margin-bottom: 18px;    /*sorgt für Abstand zwschen den Eingabefeldern*/
@@ -65,16 +54,6 @@ h1 {
     background: white;
 }
 
-.form__input--error {
-    color: red;
-    border-color: red;
-}
-
-.form__input-error-message {
-    margin-top: 9px;
-    font-size: 12px;
-    color: red;
-}
 
 .form__button {
     width: 100%;

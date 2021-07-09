@@ -34,54 +34,57 @@
                 <h1 class="form__title">Jetzt ein neues Rezept erstellen</h1>
                 <h2 class="form__title">Titel</h2>
                 <div class="form__input-group">
-                    <input type="text" class="form__input" autofocus placeholder="Name des Rezeptes">
+                    <input name="titel" type="text" class="form__input" autofocus placeholder="Name des Rezeptes">
                 </div>
                 <h2 class="form__title__2">Zutaten</h2>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat1" type="text" class="form__input">
                 </div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat2" type="text" class="form__input">
                 </div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat3" type="text" class="form__input">
                 </div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat4" type="text" class="form__input">
                 </div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat5" type="text" class="form__input">
                 </div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat6" type="text" class="form__input">
                 </div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat7" type="text" class="form__input">
                 </div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat8" type="text" class="form__input">
                 </div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat9" type="text" class="form__input">
                 </div>
                 <div class="form__input-group">
-                    <input type="text" class="form__input">
+                    <input name="zutat10" type="text" class="form__input">
                 </div>
 
                 <h2 class="form__title__2">Zubereitung</h2>
                 <div class="form__input-group">
-                    <textarea class="form__input" cols="63" rows="10"></textarea>
+                    <textarea name="zubereitung" class="form__input" cols="63" rows="10"></textarea>
                 </div>
-                <button class="form__button" type="submit">erstellen</button>
+                <button class="form__button" id="submit" type="button">erstellen</button>
             </form>
         </div>
 
+        <div id="server"></div>
+
         <div class="container3">
             <h1 class="form__title">Meine Rezepte</h1>
-            <button id="edit">Bearbeiten</button>
-            <button id="delete">Löschen</button>
+            <button id="edit" type="button" >Bearbeiten</button>
+            <button id="delete" type="button">Löschen</button>
         </div>
 
+        
     </main>
 </body>
 
