@@ -41,6 +41,11 @@ export namespace Semesterabgabe {
         console.log("Listening");
     }
 
+    interface Favorit {
+        user: string,
+        rezept: string,
+    }
+
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
 
         console.log("Hearing");
@@ -72,7 +77,8 @@ export namespace Semesterabgabe {
                 if (await user.findOne({ "username": url.query.username }))
                     _response.write("false");
                 else {
-                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": Array });
+                    let tempArray: Favorit[] = [];
+                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": tempArray });
                     _response.write("true");
                 }
             }
