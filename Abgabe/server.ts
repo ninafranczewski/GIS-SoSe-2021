@@ -57,40 +57,41 @@ export namespace Semesterabgabe {
             if (url.pathname == "/login") {
                 //Request Login
                 console.log("Login");
-                
-                if (await user.findOne({ "username" : url.query.username, "password": url.query.password }))
-                _response.write("true");
+
+                if (await user.findOne({ "username": url.query.username, "password": url.query.password }))
+                    _response.write("true");
                 else
-                _response.write("false");
+                    _response.write("false");
             }
-            
+
             //neuer Account
             if (url.pathname == "/createAccount") {
                 //Request CreateAccount
                 console.log("createAccount");
 
-                if (await user.findOne({ "username": url.query.username})) 
+                if (await user.findOne({ "username": url.query.username }))
                     _response.write("false");
                 else {
                     user.insertOne(url.query);
                     _response.write("true");
-                } 
+                }
             }
 
             if (url.pathname == "/erstellen") {
                 //Request Rezept erstellen
                 console.log("Rezept erstellen");
-                recipe.insertOne({ "titel" : url.query.titel, "zutat1": url.query.zutat1, "zutat2" : url.query.zutat2, "zutat3" : url.query.zutat3, "zutat4" : url.query.zutat4, "zutat5" : url.query.zutat5, "zutat6" : url.query.zutat6, "zutat7" : url.query.zutat7, "zutat8" : url.query.zutat8, "zutat9" : url.query.zutat9, "zutat10" : url.query.zutat10, "zubereitung" : url.query.zubereitung });
-            
+                recipe.insertOne({ "titel": url.query.titel, "zutat1": url.query.zutat1, "zutat2": url.query.zutat2, "zutat3": url.query.zutat3, "zutat4": url.query.zutat4, "zutat5": url.query.zutat5, "zutat6": url.query.zutat6, "zutat7": url.query.zutat7, "zutat8": url.query.zutat8, "zutat9": url.query.zutat9, "zutat10": url.query.zutat10, "zubereitung": url.query.zubereitung });
+
             }
 
             if (url.pathname == "/holeRezept") {
-                let result = await recipe.findOne({"titel" : url.query.titel});
+                let result = await recipe.findOne({ "titel": url.query.titel });
                 _response.write(JSON.stringify(result));
             }
 
             if (url.pathname == "/holeRezepte") {
-                let result = await recipe.find({}).toArray();
+                let cursor: Mongo.Cursor = recipe.find();
+                let result = await cursor.toArray();
                 _response.write(JSON.stringify(result));
             }
 

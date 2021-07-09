@@ -71,7 +71,8 @@ var Semesterabgabe;
                 _response.write(JSON.stringify(result));
             }
             if (url.pathname == "/holeRezepte") {
-                let result = await recipe.find({});
+                let cursor = recipe.find();
+                let result = await cursor.toArray();
                 _response.write(JSON.stringify(result));
             }
         }
