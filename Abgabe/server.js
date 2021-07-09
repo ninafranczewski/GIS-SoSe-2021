@@ -57,7 +57,8 @@ var Semesterabgabe;
                 if (await user.findOne({ "username": url.query.username }))
                     _response.write("false");
                 else {
-                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": Array });
+                    let tempArray = [];
+                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": tempArray });
                     _response.write("true");
                 }
             }
