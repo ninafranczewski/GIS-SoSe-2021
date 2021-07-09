@@ -34,6 +34,12 @@ var Semesterabgabe;
     function handleListen() {
         console.log("Listening");
     }
+    class Favorit {
+        constructor(user, rezept) {
+            this.user = user;
+            this.rezept = rezept;
+        }
+    }
     async function handleRequest(_request, _response) {
         console.log("Hearing");
         _response.setHeader("Access-Control-Allow-Origin", "*");
@@ -77,10 +83,20 @@ var Semesterabgabe;
                 let result = await cursor.toArray();
                 _response.write(JSON.stringify(result));
             }
+            if (url.pathname == "/holeFavRezepte") {
+                let user1 = await user.findOne({ "username": url.query.username });
+                let favoriten = user1["favoriten"];
+                let result = [];
+                for (let favorit of favoriten) {
+                    result.push(recipe.findOne({ "user": favorit.user, "titel": favorit.rezept }));
+                }
+                _response.write(JSON.stringify(result));
+            }
             if (url.pathname == "/fav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten = user1["favoriten"];
-                favoriten.push({ "rezept": url.query.rezept, "user": url.query.user });
+                let favorit = new Favorit(url.query.user.toString(), url.query.rezept.toString());
+                favoriten.push(favorit);
                 user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
                 _response.write("added");
             }
