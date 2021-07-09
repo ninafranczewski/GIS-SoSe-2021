@@ -82,6 +82,7 @@ var Semesterabgabe;
                 let favoriten = user1["favoriten"];
                 favoriten.push({ "rezept": url.query.rezept, "user": url.query.user });
                 user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
+                _response.write("added");
             }
             if (url.pathname == "/favAway") {
                 let user1 = await user.findOne({ "username": url.query.username });
@@ -89,6 +90,7 @@ var Semesterabgabe;
                 let favourite = favoriten.find(e => e.rezept == url.query.rezept && e.user == url.query.user);
                 favoriten.splice(favoriten.indexOf(favourite), 1);
                 user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
+                _response.write("delete");
             }
         }
         _response.end();

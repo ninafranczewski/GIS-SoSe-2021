@@ -26,7 +26,6 @@ var Semesterabgabe;
         let submitS = await submit.text();
         let data = document.getElementById("server");
         data.innerHTML = submitS;
-        await fetch(url);
         loadRecipe(query.get("titel"));
     }
     async function loadRecipe(nameRezept) {

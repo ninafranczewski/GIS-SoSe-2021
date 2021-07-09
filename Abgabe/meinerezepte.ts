@@ -36,7 +36,6 @@ namespace Semesterabgabe {
         let data: HTMLElement = <HTMLElement>document.getElementById("server");
         data.innerHTML = submitS;
 
-        await fetch(url);
         loadRecipe(query.get("titel"));
 
     }

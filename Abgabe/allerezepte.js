@@ -1,7 +1,13 @@
 "use strict";
 var Semesterabgabe;
 (function (Semesterabgabe) {
-    function handleClickIcon() {
+    async function handleClickIcon(rezeptBesitzer, rezeptName) {
+        freshUrl();
+        let username = localStorage.getItem("username");
+        url = url + "/fav" + "?username=" + username + "&user=" + rezeptBesitzer + "&rezept=" + rezeptName;
+        console.log(url);
+        await fetch(url);
+        console.log(url);
     }
     //Allgemeine url
     let url;
@@ -26,7 +32,7 @@ var Semesterabgabe;
             let blogPostInfoIcon = document.createElement("div");
             blogPostInfo.appendChild(blogPostInfoIcon);
             let blogPostInfoIconImg = document.createElement("img");
-            blogPostInfoIconImg.addEventListener("click", handleClickIcon);
+            blogPostInfoIconImg.addEventListener("click", () => handleClickIcon(rezeptEintrag.user, rezeptEintrag.titel));
             blogPostInfoIconImg.src = "img/icon.png";
             blogPostInfoIconImg.alt = "heart-icon";
             blogPostInfoIcon.appendChild(blogPostInfoIconImg);
