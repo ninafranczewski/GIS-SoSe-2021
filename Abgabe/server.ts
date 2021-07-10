@@ -50,6 +50,7 @@ export namespace Semesterabgabe {
         }
     }
 
+
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
 
         console.log("Hearing");
@@ -82,7 +83,7 @@ export namespace Semesterabgabe {
                     _response.write("false");
                 else {
                     let tempArray: Favorit[] = new Array;
-                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": JSON.stringify(tempArray) });
+                    user.insertOne({ "favoriten": JSON.stringify(tempArray), "username": url.query.username, "password": url.query.password });
                     _response.write("true");
                 }
             }

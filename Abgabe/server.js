@@ -64,7 +64,7 @@ var Semesterabgabe;
                     _response.write("false");
                 else {
                     let tempArray = new Array;
-                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": JSON.stringify(tempArray) });
+                    user.insertOne({ "favoriten": JSON.stringify(tempArray), "username": url.query.username, "password": url.query.password });
                     _response.write("true");
                 }
             }
