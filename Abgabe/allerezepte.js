@@ -33,6 +33,7 @@ var Semesterabgabe;
             blogPostInfo.appendChild(blogPostInfoIcon);
             let blogPostInfoIconImg = document.createElement("img");
             blogPostInfoIconImg.addEventListener("click", () => handleClickIcon(rezeptEintrag.user, rezeptEintrag.titel));
+            //für jedes icon wird eine anonyme Funktion erstellt, welche die handleClick für das aktuell ausgewählte Rezept ausführt
             blogPostInfoIconImg.src = "img/icon.png";
             blogPostInfoIconImg.alt = "heart-icon";
             blogPostInfoIcon.appendChild(blogPostInfoIconImg);
@@ -48,11 +49,11 @@ var Semesterabgabe;
                 if (key.includes("zutat")) {
                     let value = rezeptEintrag[key];
                     if (value !== "") {
-                        zutatenliste += " " + value;
+                        zutatenliste += " " + value; //damit values getrennt sind -> " "
                     }
                 }
             }
-            zutaten1.textContent = zutatenliste.trim(); //entfernt alle Leerzeichen vor und nach dem String
+            zutaten1.textContent = zutatenliste.trim(); //entfernt alle Leerzeichen vor und nach dem String -> schönere Formatierung
             blogPostInfo.appendChild(zutaten1);
             let zubereitung = document.createElement("h2");
             zubereitung.textContent = "Zubereitung";

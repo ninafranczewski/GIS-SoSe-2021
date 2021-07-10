@@ -42,7 +42,7 @@ var Semesterabgabe;
     }
     async function handleRequest(_request, _response) {
         console.log("Hearing");
-        _response.setHeader("Access-Control-Allow-Origin", "*");
+        _response.setHeader("Access-Control-Allow-Origin", "*"); //Formatierung der Antwort vom server
         _response.setHeader("content-type", "text/html; charset=utf-8");
         if (_request.url) {
             let url = Url.parse(_request.url, true);
@@ -75,8 +75,8 @@ var Semesterabgabe;
             }
             if (url.pathname == "/holeRezept") {
                 let cursor = recipe.find({ "user": url.query.username });
-                let result = await cursor.toArray();
-                _response.write(JSON.stringify(result));
+                let result = await cursor.toArray(); //Alle gefunden Einträge werden in einem Array gespeichert
+                _response.write(JSON.stringify(result)); //macht aus dem Objekt ein String den man übergeben kann
             }
             if (url.pathname == "/holeRezepte") {
                 let cursor = recipe.find();
@@ -85,7 +85,7 @@ var Semesterabgabe;
             }
             if (url.pathname == "/holeFavRezepte") {
                 let user1 = await user.findOne({ "username": url.query.username });
-                let favoriten = user1["favoriten"];
+                let favoriten = user1["favoriten"]; //bei Objekten ist der key immer ein string
                 let result = [];
                 for (let favorit of favoriten) {
                     console.log(favorit);
@@ -93,7 +93,6 @@ var Semesterabgabe;
                     if (rezeptTitel != undefined) {
                         result.push(rezeptTitel);
                     }
-                    console.log(rezeptTitel);
                 }
                 _response.write(JSON.stringify(result));
             }
@@ -102,17 +101,18 @@ var Semesterabgabe;
                 let favoriten = user1["favoriten"];
                 let rezeptBesitzer = url.query.rezeptBesitzer;
                 let rezept = url.query.rezept;
-                let favorit = new Favorit(Array.isArray(rezeptBesitzer) ? rezeptBesitzer.join("") : rezeptBesitzer, Array.isArray(rezept) ? rezept.join("") : rezept); //Kurzschreibweise if: wenns ein array is dann wird durch join die Arrayelemete ohne "seperator" zusammengefügt, ansosten wird ein string verwendet weil es ein string ist
+                let favorit = new Favorit(Array.isArray(rezeptBesitzer) ? rezeptBesitzer.join("") : rezeptBesitzer, Array.isArray(rezept) ? rezept.join("") : rezept);
+                //Kurzschreibweise if: wenns ein array is dann wird durch join die Arrayelemete ohne "seperator" zusammengefügt, ansosten wird ein string verwendet weil es ein string ist
                 favoriten.push(favorit);
-                user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } }); //durch set reicht es nur die favoriten anzugeben
+                user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } }); //durch set reicht es nur die favoriten anzugeben (ohne passwort)
                 console.log("fertig");
                 _response.write("added");
             }
             if (url.pathname == "/deleteFav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten = user1["favoriten"];
-                let favourite = favoriten.find(e => e.rezept == url.query.rezept && e.user == url.query.user);
-                favoriten.splice(favoriten.indexOf(favourite), 1);
+                let favourite = favoriten.find(eintrag => eintrag.rezept == url.query.rezept && eintrag.user == url.query.user); //wenn rezept und user übereinstimmen, dann speicher den Eintrag
+                favoriten.splice(favoriten.indexOf(favourite), 1); //lösche Favoriteneintrag an dem Index von favourite
                 user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } });
                 _response.write("delete");
             }
