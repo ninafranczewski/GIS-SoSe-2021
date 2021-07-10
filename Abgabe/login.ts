@@ -22,8 +22,8 @@ namespace Semesterabgabe {
     let url: string;
 
     function freshUrl(): void {
-        //url = "https://gissose2021omb.herokuapp.com"
-        url = "http://localhost:8100";
+        url = "https://gissose2021omb.herokuapp.com"
+        //url = "http://localhost:8100";
     }
 
     //Buttons
