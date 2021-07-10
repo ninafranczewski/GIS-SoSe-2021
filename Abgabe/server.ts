@@ -112,8 +112,12 @@ export namespace Semesterabgabe {
                 let favoriten: Favorit[] = user1["favoriten"];
                 let result = [];
                 for (let favorit of favoriten) {
+                    console.log(favorit);
+                    
                     result.push(recipe.findOne({ "user": favorit.user, "titel": favorit.rezept }));
+                    
                 }
+
                 _response.write(JSON.stringify(result));
             }
 
