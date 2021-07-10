@@ -72,6 +72,7 @@ var Semesterabgabe;
                 //Request Rezept erstellen
                 console.log("Rezept erstellen");
                 recipe.insertOne({ "user": url.query.username, "titel": url.query.titel, "zutat1": url.query.zutat1, "zutat2": url.query.zutat2, "zutat3": url.query.zutat3, "zutat4": url.query.zutat4, "zutat5": url.query.zutat5, "zutat6": url.query.zutat6, "zutat7": url.query.zutat7, "zutat8": url.query.zutat8, "zutat9": url.query.zutat9, "zutat10": url.query.zutat10, "zubereitung": url.query.zubereitung });
+                _response.write(JSON.stringify(await (recipe.find().toArray())));
             }
             if (url.pathname == "/holeRezept") {
                 let cursor = recipe.find({ "user": url.query.username });
