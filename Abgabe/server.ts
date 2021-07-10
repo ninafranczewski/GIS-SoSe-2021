@@ -123,8 +123,9 @@ export namespace Semesterabgabe {
                 
                 let favoriten: Favorit[] = user1["favoriten"];
                 console.log(favoriten);
-                
-                let favorit: Favorit = new Favorit(url.query.user.toString(), url.query.rezept.toString());
+                let rezeptBesitzer = url.query.rezeptBesitzer
+                let rezept = url.query.rezept
+                let favorit: Favorit = new Favorit(Array.isArray(rezeptBesitzer)? rezeptBesitzer.join(""):rezeptBesitzer, Array.isArray(rezept)? rezept.join(""):rezept); //Kurzschreibweise if: wenns ein array is dann wird durch join die Arrayelemete ohne "seperator" zusammengefügt, ansosten wird ein string verwendet weil es ein string ist
                 console.log(favorit);
                 
                 favoriten.push(favorit);
