@@ -90,7 +90,9 @@ var Semesterabgabe;
                 for (let favorit of favoriten) {
                     console.log(favorit);
                     let rezeptTitel = await recipe.findOne({ "user": favorit.user, "titel": favorit.rezept });
-                    result.push(rezeptTitel);
+                    if (rezeptTitel != undefined) {
+                        result.push(rezeptTitel);
+                    }
                     console.log(rezeptTitel);
                 }
                 _response.write(JSON.stringify(result));
@@ -112,6 +114,10 @@ var Semesterabgabe;
                 let favourite = favoriten.find(e => e.rezept == url.query.rezept && e.user == url.query.user);
                 favoriten.splice(favoriten.indexOf(favourite), 1);
                 user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } });
+                _response.write("delete");
+            }
+            if (url.pathname == "/löscheRezept") {
+                await recipe.deleteOne({ "user": url.query.username, "titel": url.query.rezeptName });
                 _response.write("delete");
             }
         }

@@ -9,13 +9,7 @@ namespace Semesterabgabe {
     }
 
 
-    //Buttons
-    let bearbeiten: HTMLButtonElement = <HTMLButtonElement>document.getElementById("edit");
-    bearbeiten.addEventListener("click", handleClickEdit);
-
-    let löschen: HTMLButtonElement = <HTMLButtonElement>document.getElementById("delete");
-    löschen.addEventListener("click", handleClickDelete);
-
+    //Button
     let erstellen: HTMLButtonElement = <HTMLButtonElement>document.getElementById("submit");
     erstellen.addEventListener("click", handleClickSubmit);
 
@@ -36,14 +30,17 @@ namespace Semesterabgabe {
         let data: HTMLElement = <HTMLElement>document.getElementById("server");
         data.innerHTML = submitS;
 
-        loadRecipe(query.get("titel"));
+
+        loadRecipe();
 
     }
 
-    async function loadRecipe(nameRezept: string): Promise<void> {
+
+
+    async function loadRecipe(): Promise<void> {
         freshUrl();
         let username = localStorage.getItem("username")
-        url = url + "/holeRezept" + "?titel=" + nameRezept + "&username=" + username;
+        url = url + "/holeRezept" + "?username=" + username;
         console.log(url);
         let result: Response = await fetch(url);
         let output: string = await result.text();
@@ -51,6 +48,7 @@ namespace Semesterabgabe {
         let objekt = JSON.parse(output)
         let rezept: HTMLElement = <HTMLElement>document.getElementById("neuesRezept");
 
+        rezept.innerHTML = "";
         console.log(objekt);
 
         for (let rezeptEintrag of objekt) {
@@ -91,15 +89,21 @@ namespace Semesterabgabe {
             let zubereitungText = document.createElement("p");
             zubereitungText.textContent = rezeptEintrag["zubereitung"];
             blogPostInfo.appendChild(zubereitungText);
+
+            let deleteRecipe = document.createElement("button");
+            deleteRecipe.addEventListener("click", () => handleClickDelete(rezeptEintrag["titel"]));
         }
     }
 
-    async function handleClickEdit(): Promise<void> {
-
+    async function handleClickDelete(rezeptName: string): Promise<void> {
+        freshUrl();
+        let username = localStorage.getItem("username")
+        url = url + "/löscheRezept" + "?username=" + username + "&rezeptName=" + rezeptName;
+        console.log(url);
+        await fetch(url);
+        loadRecipe();
     }
 
-    async function handleClickDelete(): Promise<void> {
-
-    }
+    loadRecipe();
 
 }
