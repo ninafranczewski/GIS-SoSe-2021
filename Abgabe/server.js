@@ -116,7 +116,7 @@ var Semesterabgabe;
                 user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } });
                 _response.write("delete");
             }
-            if (url.pathname == "/löscheRezept") {
+            if (url.pathname == "/loescheRezept") {
                 await recipe.deleteOne({ "user": url.query.username, "titel": url.query.rezeptName });
                 _response.write("delete");
             }
