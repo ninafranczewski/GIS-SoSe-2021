@@ -82,7 +82,7 @@ export namespace Semesterabgabe {
                     _response.write("false");
                 else {
                     let tempArray: Favorit[] = new Array;
-                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": tempArray });
+                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": JSON.stringify(tempArray) });
                     _response.write("true");
                 }
             }

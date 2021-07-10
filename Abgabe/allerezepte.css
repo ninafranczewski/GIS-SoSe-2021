@@ -71,8 +71,59 @@ h2 {
 }
 
 @media screen and (max-width: 800px) {
+
+    main {
+        padding: 0;
+        margin: 0;
+    }
+
     #recipeContainer > div{
         padding: 2.5rem;
         flex-direction: column;
+    }
+
+    #recipeContainer > div {
+        width: 100%;
+        max-width: 35rem;
+        padding: 3rem;
+        background-color: white;
+        box-shadow: 0 1rem 7rem rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        border-radius: 1rem;
+        margin: 1rem;
+        
+    }
+
+
+    h2 {
+        font-weight: bold;
+        color: rgb(80, 80, 80);
+        font-size: 1.3rem;
+    }
+
+    #recipeContainer > div > div {
+        width: 100%;
+    }
+
+    #recipeContainer > div > div > h1 {
+        font-weight: normal;
+        font-size: 1.7rem;
+        margin: 1.5rem 0 2rem;
+        
+    }
+
+    #recipeContainer > div > div > p {
+        font-size: 1.2rem;
+        color: grey;
+    }
+
+    #recipeContainer > div > div > div > img {
+        width: 6%;
+        float: right;
+        margin-top: 75px;
+        opacity: 40%;
+        cursor: pointer;
+        border-radius: 1rem;
     }
 }
