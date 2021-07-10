@@ -61,7 +61,7 @@ h2 {
 }
 
 #rezepteContainer > div > div > div > img {
-    width: 6%;
+    width: 4%;
     float: right;
     margin-top: 75px;
     opacity: 100%;
@@ -71,7 +71,7 @@ h2 {
 
 #rezepteContainer > div > div > div > img:hover {
     cursor: pointer;
-    opacity: 40%;
+    opacity: 25%;
 }
 
 @media screen and (max-width: 700px) {
