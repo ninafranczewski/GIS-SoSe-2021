@@ -109,8 +109,22 @@ button:hover {
     background: rgb(252, 148, 165);
 }
 
+@media (min-width: 601px) and (max-width: 1024px) {
+    .container2 {
+        width: 300px;
+    
+    }
 
-@media screen and (max-width: 700px) {
+    .container3 {
+        width: 450px
+    }
+
+    .form__input {
+        padding: 5px;;
+    }
+}
+
+@media (max-width: 600px) {
 
     main {
         padding: 0;

@@ -50,7 +50,19 @@
     transform: translateX(-150px)
 }
 
-@media only screen and (max-width:700px) {
+@media (min-width: 601px) and (max-width: 1024px){
+    .title h2 {
+        font-size: 43px;
+    }
+
+    .title p {
+        font-size: 16px;
+
+    }
+}
+
+
+@media (max-width: 600px) {
 
     .row {
         flex-direction: column-reverse;

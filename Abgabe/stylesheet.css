@@ -25,7 +25,6 @@ body {
 
 .burgerMenu {
     width: 25px;
-    cursor: pointer;
     display: none;
 }
 
@@ -55,7 +54,7 @@ nav ul li a:hover {
     color: rgb(252, 148, 165);
 }
 
-@media only screen and (max-width:600px) {
+@media (max-width: 600px) {
 
     nav ul{
         width: 100%;
