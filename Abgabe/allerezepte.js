@@ -10,7 +10,7 @@ var Semesterabgabe;
     async function handleClickIcon(rezeptBesitzer, rezeptName) {
         freshUrl();
         let username = localStorage.getItem("username");
-        url = url + "/fav" + "?username=" + username + "&user=" + rezeptBesitzer + "&rezept=" + rezeptName;
+        url = url + "/fav" + "?username=" + username + "&rezeptBesitzer=" + rezeptBesitzer + "&rezept=" + rezeptName;
         console.log(url);
         await fetch(url);
         console.log(url);
