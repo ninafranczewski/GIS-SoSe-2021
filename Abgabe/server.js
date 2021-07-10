@@ -94,16 +94,12 @@ var Semesterabgabe;
             }
             if (url.pathname == "/fav") {
                 let user1 = await user.findOne({ "username": url.query.username });
-                console.log(user1);
                 let favoriten = user1["favoriten"];
-                console.log(favoriten);
                 let rezeptBesitzer = url.query.rezeptBesitzer;
                 let rezept = url.query.rezept;
                 let favorit = new Favorit(Array.isArray(rezeptBesitzer) ? rezeptBesitzer.join("") : rezeptBesitzer, Array.isArray(rezept) ? rezept.join("") : rezept); //Kurzschreibweise if: wenns ein array is dann wird durch join die Arrayelemete ohne "seperator" zusammengefügt, ansosten wird ein string verwendet weil es ein string ist
-                console.log(favorit);
                 favoriten.push(favorit);
-                console.log(favoriten);
-                user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } });
+                user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } }); //durch set reicht es nur die favoriten anzugeben
                 console.log("fertig");
                 _response.write("added");
             }
