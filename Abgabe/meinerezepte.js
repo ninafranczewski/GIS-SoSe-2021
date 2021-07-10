@@ -65,13 +65,15 @@ var Semesterabgabe;
             zubereitungText.textContent = rezeptEintrag["zubereitung"];
             blogPostInfo.appendChild(zubereitungText);
             let deleteRecipe = document.createElement("button");
+            deleteRecipe.textContent = "Löschen";
             deleteRecipe.addEventListener("click", () => handleClickDelete(rezeptEintrag["titel"]));
+            blogPostInfo.appendChild(deleteRecipe);
         }
     }
     async function handleClickDelete(rezeptName) {
         freshUrl();
         let username = localStorage.getItem("username");
-        url = url + "/löscheRezept" + "?username=" + username + "&rezeptName=" + rezeptName;
+        url = url + "/loescheRezept" + "?username=" + username + "&rezeptName=" + rezeptName;
         console.log(url);
         await fetch(url);
         loadRecipe();
