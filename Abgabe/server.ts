@@ -83,7 +83,7 @@ export namespace Semesterabgabe {
                     _response.write("false");
                 else {
                     let tempArray: Favorit[] = new Array;
-                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": JSON.stringify(tempArray) });
+                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": tempArray });
                     _response.write("true");
                 }
             }
@@ -109,7 +109,7 @@ export namespace Semesterabgabe {
 
             if (url.pathname == "/holeFavRezepte") {
                 let user1 = await user.findOne({ "username": url.query.username });
-                let favoriten: Favorit[] = JSON.parse(user1["favoriten"]);
+                let favoriten: Favorit[] = user1["favoriten"];
                 let result = [];
                 for (let favorit of favoriten) {
                     result.push(recipe.findOne({ "user": favorit.user, "titel": favorit.rezept }));
@@ -119,19 +119,19 @@ export namespace Semesterabgabe {
 
             if (url.pathname == "/fav") {
                 let user1 = await user.findOne({ "username": url.query.username });
-                let favoriten: Favorit[] = user1["favoriten"]
+                let favoriten: Favorit[] = user1["favoriten"];
                 let favorit: Favorit = new Favorit(url.query.user.toString(), url.query.rezept.toString())
                 favoriten.push(favorit);
-                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten })
+                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
                 _response.write("added");
             }
 
             if (url.pathname == "/deleteFav") {
                 let user1 = await user.findOne({ "username": url.query.username });
-                let favoriten: Favorit[] = user1["favoriten"]
+                let favoriten: Favorit[] = user1["favoriten"];
                 let favourite = favoriten.find(e => e.rezept == url.query.rezept && e.user == url.query.user);
-                favoriten.splice(favoriten.indexOf(favourite), 1)
-                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten })
+                favoriten.splice(favoriten.indexOf(favourite), 1);
+                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
                 _response.write("delete");
             }
 
