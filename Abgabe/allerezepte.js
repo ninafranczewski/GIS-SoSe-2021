@@ -1,6 +1,12 @@
 "use strict";
 var Semesterabgabe;
 (function (Semesterabgabe) {
+    //Allgemeine url
+    let url;
+    function freshUrl() {
+        url = "https://gissose2021omb.herokuapp.com";
+        //url = "http://localhost:8100";
+    }
     async function handleClickIcon(rezeptBesitzer, rezeptName) {
         freshUrl();
         let username = localStorage.getItem("username");
@@ -8,12 +14,6 @@ var Semesterabgabe;
         console.log(url);
         await fetch(url);
         console.log(url);
-    }
-    //Allgemeine url
-    let url;
-    function freshUrl() {
-        url = "https://gissose2021omb.herokuapp.com";
-        //url = "http://localhost:8100";
     }
     async function recipes() {
         freshUrl();

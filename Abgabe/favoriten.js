@@ -15,7 +15,7 @@ var Semesterabgabe;
         await fetch(url);
         console.log(url);
     }
-    async function recipes() {
+    async function getRecipes() {
         freshUrl();
         let username = localStorage.getItem("username");
         url = url + "/holeFavRezepte" + "?username=" + username;
@@ -63,6 +63,6 @@ var Semesterabgabe;
             blogPostInfo.appendChild(zubereitungText);
         }
     }
-    recipes();
+    getRecipes();
 })(Semesterabgabe || (Semesterabgabe = {}));
 //# sourceMappingURL=favoriten.js.map

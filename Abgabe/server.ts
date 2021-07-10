@@ -120,7 +120,7 @@ export namespace Semesterabgabe {
             if (url.pathname == "/fav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten: Favorit[] = user1["favoriten"];
-                let favorit: Favorit = new Favorit(url.query.user.toString(), url.query.rezept.toString())
+                let favorit: Favorit = new Favorit(url.query.user.toString(), url.query.rezept.toString());
                 favoriten.push(favorit);
                 user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
                 _response.write("added");

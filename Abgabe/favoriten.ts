@@ -19,7 +19,7 @@ namespace Semesterabgabe {
     }
 
 
-    async function recipes(): Promise<void> {
+    async function getRecipes(): Promise<void> {
         freshUrl();
         let username = localStorage.getItem("username")
         url = url + "/holeFavRezepte" + "?username=" + username;
@@ -45,8 +45,8 @@ namespace Semesterabgabe {
             let blogPostInfoIconImg = document.createElement("img");
             blogPostInfoIconImg.addEventListener("click", () => handleClickIcon(rezeptEintrag.user, rezeptEintrag.titel));
 
-            blogPostInfoIconImg.src= "img/icon.png" 
-            blogPostInfoIconImg.alt= "heart-icon"
+            blogPostInfoIconImg.src= "img/icon.png";
+            blogPostInfoIconImg.alt= "heart-icon";
             blogPostInfoIcon.appendChild(blogPostInfoIconImg);
             
 
@@ -84,6 +84,6 @@ namespace Semesterabgabe {
         }
     }
 
-    recipes();
+    getRecipes();
 
 }

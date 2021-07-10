@@ -1,4 +1,12 @@
 namespace Semesterabgabe {
+    
+    //Allgemeine url
+    let url: string;
+
+    function freshUrl(): void {
+        url = "https://gissose2021omb.herokuapp.com"
+        //url = "http://localhost:8100";
+    }
 
     async function handleClickIcon(rezeptBesitzer: String, rezeptName: String): Promise<void> {
         freshUrl();
@@ -10,13 +18,6 @@ namespace Semesterabgabe {
         
     }
 
-    //Allgemeine url
-    let url: string;
-
-    function freshUrl(): void {
-        url = "https://gissose2021omb.herokuapp.com"
-        //url = "http://localhost:8100";
-    }
 
 
     async function recipes(): Promise<void> {
