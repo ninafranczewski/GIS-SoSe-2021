@@ -12,6 +12,21 @@ main {
     
 }
 
+h1 {
+    font-weight: normal;
+    color: rgb(252, 148, 165);
+}
+
+h2 {
+    font-weight: bold;
+    color: rgb(80, 80, 80);
+}
+
+#recipeContainer > div > div > p {
+    font-size: 13px;
+    color: rgb(80, 80, 80);
+}
+
 #recipeContainer > div {
     width: 100%;
     max-width: 98rem;

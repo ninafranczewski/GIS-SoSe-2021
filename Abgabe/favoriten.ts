@@ -11,7 +11,7 @@ namespace Semesterabgabe {
     async function handleClickIcon(rezeptBesitzer: String, rezeptName: String): Promise<void> {
         freshUrl();
         let username = localStorage.getItem("username")
-        url = url + "/favAway" + "?username=" + username + "&user=" + rezeptBesitzer + "&rezept=" + rezeptName;
+        url = url + "/deleteFav" + "?username=" + username + "&user=" + rezeptBesitzer + "&rezept=" + rezeptName;
         console.log(url);
         await fetch(url);
         console.log(url);

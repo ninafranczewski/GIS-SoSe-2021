@@ -63,7 +63,7 @@ var Semesterabgabe;
                 if (await user.findOne({ "username": url.query.username }))
                     _response.write("false");
                 else {
-                    let tempArray = [];
+                    let tempArray = new Array;
                     user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": tempArray });
                     _response.write("true");
                 }
@@ -100,7 +100,7 @@ var Semesterabgabe;
                 user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
                 _response.write("added");
             }
-            if (url.pathname == "/favAway") {
+            if (url.pathname == "/deleteFav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten = user1["favoriten"];
                 let favourite = favoriten.find(e => e.rezept == url.query.rezept && e.user == url.query.user);

@@ -44,7 +44,7 @@ export namespace Semesterabgabe {
     class Favorit {
         user: string;
         rezept: string;
-        constructor (user:string, rezept:string) {
+        constructor(user: string, rezept: string) {
             this.user = user;
             this.rezept = rezept;
         }
@@ -81,7 +81,7 @@ export namespace Semesterabgabe {
                 if (await user.findOne({ "username": url.query.username }))
                     _response.write("false");
                 else {
-                    let tempArray: Favorit[] = [];
+                    let tempArray: Favorit[] = new Array;
                     user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": tempArray });
                     _response.write("true");
                 }
@@ -111,7 +111,7 @@ export namespace Semesterabgabe {
                 let favoriten: Favorit[] = user1["favoriten"]
                 let result = [];
                 for (let favorit of favoriten) {
-                    result.push(recipe.findOne({"user": favorit.user, "titel": favorit.rezept}));
+                    result.push(recipe.findOne({ "user": favorit.user, "titel": favorit.rezept }));
                 }
                 _response.write(JSON.stringify(result));
             }
@@ -119,13 +119,13 @@ export namespace Semesterabgabe {
             if (url.pathname == "/fav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten: Favorit[] = user1["favoriten"]
-                let favorit: Favorit = new Favorit( url.query.user.toString(), url.query.rezept.toString())
+                let favorit: Favorit = new Favorit(url.query.user.toString(), url.query.rezept.toString())
                 favoriten.push(favorit);
                 user.updateOne({ "username": url.query.username }, { "favoriten": favoriten })
                 _response.write("added");
             }
 
-            if (url.pathname == "/favAway") {
+            if (url.pathname == "/deleteFav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten: Favorit[] = user1["favoriten"]
                 let favourite = favoriten.find(e => e.rezept == url.query.rezept && e.user == url.query.user);
