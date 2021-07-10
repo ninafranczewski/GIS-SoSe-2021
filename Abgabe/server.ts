@@ -83,7 +83,7 @@ export namespace Semesterabgabe {
                     _response.write("false");
                 else {
                     let tempArray: Favorit[] = new Array;
-                    user.insertOne({ "favoriten": JSON.stringify(tempArray), "username": "test", "password": url.query.password });
+                    user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": JSON.stringify(tempArray) });
                     _response.write("true");
                 }
             }
@@ -109,7 +109,7 @@ export namespace Semesterabgabe {
 
             if (url.pathname == "/holeFavRezepte") {
                 let user1 = await user.findOne({ "username": url.query.username });
-                let favoriten: Favorit[] = user1["favoriten"]
+                let favoriten: Favorit[] = JSON.parse(user1["favoriten"]);
                 let result = [];
                 for (let favorit of favoriten) {
                     result.push(recipe.findOne({ "user": favorit.user, "titel": favorit.rezept }));
