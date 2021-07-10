@@ -103,7 +103,7 @@ var Semesterabgabe;
                 console.log(favorit);
                 favoriten.push(favorit);
                 console.log(favoriten);
-                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
+                user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } });
                 console.log("fertig");
                 _response.write("added");
             }
@@ -112,7 +112,7 @@ var Semesterabgabe;
                 let favoriten = user1["favoriten"];
                 let favourite = favoriten.find(e => e.rezept == url.query.rezept && e.user == url.query.user);
                 favoriten.splice(favoriten.indexOf(favourite), 1);
-                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
+                user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } });
                 _response.write("delete");
             }
         }

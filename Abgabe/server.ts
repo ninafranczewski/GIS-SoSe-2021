@@ -119,19 +119,14 @@ export namespace Semesterabgabe {
 
             if (url.pathname == "/fav") {
                 let user1 = await user.findOne({ "username": url.query.username });
-                console.log(user1);
-                
                 let favoriten: Favorit[] = user1["favoriten"];
-                console.log(favoriten);
                 let rezeptBesitzer = url.query.rezeptBesitzer
                 let rezept = url.query.rezept
                 let favorit: Favorit = new Favorit(Array.isArray(rezeptBesitzer)? rezeptBesitzer.join(""):rezeptBesitzer, Array.isArray(rezept)? rezept.join(""):rezept); //Kurzschreibweise if: wenns ein array is dann wird durch join die Arrayelemete ohne "seperator" zusammengefügt, ansosten wird ein string verwendet weil es ein string ist
-                console.log(favorit);
                 
                 favoriten.push(favorit);
-                console.log(favoriten);
                 
-                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
+                user.updateOne({ "username": url.query.username }, {$set:{ "favoriten": favoriten }}); //durch set reicht es nur die favoriten anzugeben
                 console.log("fertig");
                 
                 _response.write("added");
@@ -142,7 +137,7 @@ export namespace Semesterabgabe {
                 let favoriten: Favorit[] = user1["favoriten"];
                 let favourite = favoriten.find(e => e.rezept == url.query.rezept && e.user == url.query.user);
                 favoriten.splice(favoriten.indexOf(favourite), 1);
-                user.updateOne({ "username": url.query.username }, { "favoriten": favoriten });
+                user.updateOne({ "username": url.query.username }, {$set:{ "favoriten": favoriten }});
                 _response.write("delete");
             }
 
