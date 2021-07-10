@@ -113,8 +113,10 @@ export namespace Semesterabgabe {
                 let result = [];
                 for (let favorit of favoriten) {
                     console.log(favorit);
+                    let rezeptTitel = await recipe.findOne({ "user": favorit.user, "titel": favorit.rezept })
+                    result.push(rezeptTitel);
+                    console.log(rezeptTitel);
                     
-                    result.push(recipe.findOne({ "user": favorit.user, "titel": favorit.rezept }));
                     
                 }
 
