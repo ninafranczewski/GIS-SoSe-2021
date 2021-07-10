@@ -91,6 +91,7 @@ var Semesterabgabe;
                     console.log(favorit);
                     let rezeptTitel = await recipe.findOne({ "user": favorit.user, "titel": favorit.rezept });
                     result.push(rezeptTitel);
+                    console.log(rezeptTitel);
                 }
                 _response.write(JSON.stringify(result));
             }
