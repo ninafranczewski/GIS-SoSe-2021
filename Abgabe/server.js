@@ -63,26 +63,30 @@ var Semesterabgabe;
                 if (await user.findOne({ "username": url.query.username }))
                     _response.write("false");
                 else {
-                    let tempArray = [];
+                    let tempArray = []; //persönliche Favoritenliste wird für jeden User erstellt
                     user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": tempArray });
                     _response.write("true");
                 }
             }
+            //neues Rezept erstellen
             if (url.pathname == "/erstellen") {
                 //Request Rezept erstellen
                 console.log("Rezept erstellen");
                 recipe.insertOne({ "user": url.query.username, "titel": url.query.titel, "zutat1": url.query.zutat1, "zutat2": url.query.zutat2, "zutat3": url.query.zutat3, "zutat4": url.query.zutat4, "zutat5": url.query.zutat5, "zutat6": url.query.zutat6, "zutat7": url.query.zutat7, "zutat8": url.query.zutat8, "zutat9": url.query.zutat9, "zutat10": url.query.zutat10, "zubereitung": url.query.zubereitung });
             }
+            //Rezept 
             if (url.pathname == "/holeRezept") {
                 let cursor = recipe.find({ "user": url.query.username });
                 let result = await cursor.toArray(); //Alle gefunden Einträge werden in einem Array gespeichert
                 _response.write(JSON.stringify(result)); //macht aus dem Objekt ein String den man übergeben kann
             }
+            //alle Rezepte
             if (url.pathname == "/holeRezepte") {
                 let cursor = recipe.find();
                 let result = await cursor.toArray();
                 _response.write(JSON.stringify(result));
             }
+            //favorisierte Rezepte
             if (url.pathname == "/holeFavRezepte") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten = user1["favoriten"]; //bei Objekten ist der key immer ein string
@@ -96,18 +100,20 @@ var Semesterabgabe;
                 }
                 _response.write(JSON.stringify(result));
             }
+            //fav zur persönlichen Sammlung hinzufügen
             if (url.pathname == "/fav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten = user1["favoriten"];
                 let rezeptBesitzer = url.query.rezeptBesitzer;
                 let rezept = url.query.rezept;
                 let favorit = new Favorit(Array.isArray(rezeptBesitzer) ? rezeptBesitzer.join("") : rezeptBesitzer, Array.isArray(rezept) ? rezept.join("") : rezept);
-                //Kurzschreibweise if: wenns ein array is dann wird durch join die Arrayelemete ohne "seperator" zusammengefügt, ansosten wird ein string verwendet weil es ein string ist
+                //Kurzschreibweise if: wenns ein array is dann wird durch join die Arrayelemete ohne "seperator" zusammengefügt, ansonsten wird ein string verwendet weil es ein string ist
                 favoriten.push(favorit);
-                user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } }); //durch set reicht es nur die favoriten anzugeben (ohne passwort)
+                user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } }); //durch set reicht es nur die favoriten anzugeben (ohne password)
                 console.log("fertig");
                 _response.write("added");
             }
+            //fav aus der persönlichen Sammlung löschen
             if (url.pathname == "/deleteFav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten = user1["favoriten"];
@@ -116,6 +122,7 @@ var Semesterabgabe;
                 user.updateOne({ "username": url.query.username }, { $set: { "favoriten": favoriten } });
                 _response.write("delete");
             }
+            //unter meineRezepte -> bereits erstellten Rezepteintrag wieder löschen
             if (url.pathname == "/loescheRezept") {
                 await recipe.deleteOne({ "user": url.query.username, "titel": url.query.rezeptName });
                 _response.write("delete");

@@ -8,6 +8,7 @@ namespace Semesterabgabe {
         //url = "http://localhost:8100";
     }
 
+    //Button zum favorisieren
     async function handleClickIcon(rezeptBesitzer: String, rezeptName: String): Promise<void> {
         freshUrl();
         let username = localStorage.getItem("username")
@@ -18,8 +19,7 @@ namespace Semesterabgabe {
         
     }
 
-
-
+    //Rezepte  anzeigen
     async function recipes(): Promise<void> {
         freshUrl();
         url = url + "/holeRezepte" + "?";
@@ -44,7 +44,7 @@ namespace Semesterabgabe {
 
             let blogPostInfoIconImg = document.createElement("img");
             blogPostInfoIconImg.addEventListener("click", () => handleClickIcon(rezeptEintrag.user, rezeptEintrag.titel));
-            //für jedes icon wird eine anonyme Funktion erstellt, welche die handleClick für das aktuell ausgewählte Rezept ausführt
+            //für jedes icon wird eine anonyme Funktion erstellt, welche die handleClick für das aktuell ausgewählte Rezept ausführt (hier: favorit hinzufügen)
 
             blogPostInfoIconImg.src= "img/icon.png" 
             blogPostInfoIconImg.alt= "heart-icon"

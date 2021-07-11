@@ -8,6 +8,7 @@ namespace Semesterabgabe {
         //url = "http://localhost:8100";
     }
 
+    //Icon zum Rezept favorisieren 
     async function handleClickIcon(rezeptBesitzer: String, rezeptName: String): Promise<void> {
         freshUrl();
         let username = localStorage.getItem("username")
@@ -18,7 +19,7 @@ namespace Semesterabgabe {
         
     }
 
-
+    //auflisten der favoristierten Rezepte
     async function getRecipes(): Promise<void> {
         freshUrl();
         let username = localStorage.getItem("username")
@@ -44,12 +45,11 @@ namespace Semesterabgabe {
 
             let blogPostInfoIconImg = document.createElement("img");
             blogPostInfoIconImg.addEventListener("click", () => handleClickIcon(rezeptEintrag.user, rezeptEintrag.titel));
-
+            //für jedes icon wird eine anonyme Funktion erstellt, welche die handleClick für das aktuell ausgewählte Rezept ausführt (hier: wieder aus der favoritenListe löschen)
             blogPostInfoIconImg.src= "img/icon.png";
             blogPostInfoIconImg.alt= "heart-icon";
             blogPostInfoIcon.appendChild(blogPostInfoIconImg);
             
-
 
             let rezeptTitel = document.createElement("h1");
             rezeptTitel.textContent = rezeptEintrag["titel"];

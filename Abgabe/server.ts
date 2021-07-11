@@ -82,12 +82,13 @@ export namespace Semesterabgabe {
                 if (await user.findOne({ "username": url.query.username }))
                     _response.write("false");
                 else {
-                    let tempArray: Favorit[] = [];
+                    let tempArray: Favorit[] = []; //persönliche Favoritenliste wird für jeden User erstellt
                     user.insertOne({ "username": url.query.username, "password": url.query.password, "favoriten": tempArray });
                     _response.write("true");
                 }
             }
 
+            //neues Rezept erstellen
             if (url.pathname == "/erstellen") {
                 //Request Rezept erstellen
                 console.log("Rezept erstellen");
@@ -95,18 +96,21 @@ export namespace Semesterabgabe {
 
             }
 
+            //Rezept 
             if (url.pathname == "/holeRezept") {
                 let cursor: Mongo.Cursor = recipe.find({ "user": url.query.username });
                 let result = await cursor.toArray(); //Alle gefunden Einträge werden in einem Array gespeichert
                 _response.write(JSON.stringify(result)); //macht aus dem Objekt ein String den man übergeben kann
             }
 
+            //alle Rezepte
             if (url.pathname == "/holeRezepte") {
                 let cursor: Mongo.Cursor = recipe.find();
                 let result = await cursor.toArray();
                 _response.write(JSON.stringify(result));
             }
 
+            //favorisierte Rezepte
             if (url.pathname == "/holeFavRezepte") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten: Favorit[] = user1["favoriten"]; //bei Objekten ist der key immer ein string
@@ -123,22 +127,24 @@ export namespace Semesterabgabe {
                 _response.write(JSON.stringify(result));
             }
 
+            //fav zur persönlichen Sammlung hinzufügen
             if (url.pathname == "/fav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten: Favorit[] = user1["favoriten"];
                 let rezeptBesitzer = url.query.rezeptBesitzer
                 let rezept = url.query.rezept
                 let favorit: Favorit = new Favorit(Array.isArray(rezeptBesitzer)? rezeptBesitzer.join(""):rezeptBesitzer, Array.isArray(rezept)? rezept.join(""):rezept); 
-                //Kurzschreibweise if: wenns ein array is dann wird durch join die Arrayelemete ohne "seperator" zusammengefügt, ansosten wird ein string verwendet weil es ein string ist
+                //Kurzschreibweise if: wenns ein array is dann wird durch join die Arrayelemete ohne "seperator" zusammengefügt, ansonsten wird ein string verwendet weil es ein string ist
                 
                 favoriten.push(favorit);
                 
-                user.updateOne({ "username": url.query.username }, {$set:{ "favoriten": favoriten }}); //durch set reicht es nur die favoriten anzugeben (ohne passwort)
+                user.updateOne({ "username": url.query.username }, {$set:{ "favoriten": favoriten }}); //durch set reicht es nur die favoriten anzugeben (ohne password)
                 console.log("fertig");
                 
                 _response.write("added");
             }
 
+            //fav aus der persönlichen Sammlung löschen
             if (url.pathname == "/deleteFav") {
                 let user1 = await user.findOne({ "username": url.query.username });
                 let favoriten: Favorit[] = user1["favoriten"];
@@ -147,6 +153,8 @@ export namespace Semesterabgabe {
                 user.updateOne({ "username": url.query.username }, {$set:{ "favoriten": favoriten }});
                 _response.write("delete");
             }
+
+            //unter meineRezepte -> bereits erstellten Rezepteintrag wieder löschen
             if (url.pathname == "/loescheRezept") {
                 await recipe.deleteOne({"user": url.query.username, "titel": url.query.rezeptName })
                 _response.write("delete");

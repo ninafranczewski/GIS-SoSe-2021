@@ -24,7 +24,7 @@ h1 {
 }
 
 .form--hidden {
-    display: none;   /*sorgt für das Ausblenden von "Konto erstellen"*/
+    display: none;   /*sorgt für das Ausblenden der Form von "Konto erstellen"*/
 }
 
 
@@ -71,8 +71,8 @@ h1 {
     background: rgb(252, 148, 165);
 }
 
-.form__button:active {
-    transform: scale(0.98);
+.form__button:active {  /*Button wird kleiner beim klicken*/
+    transform: scale(0.98)
 }
 
 .form__text {

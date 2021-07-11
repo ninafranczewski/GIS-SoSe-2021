@@ -9,7 +9,7 @@ namespace Semesterabgabe {
     }
 
 
-    //Button
+    //Button zum Rezept erstellen
     let erstellen: HTMLButtonElement = <HTMLButtonElement>document.getElementById("submit");
     erstellen.addEventListener("click", handleClickSubmit);
 
@@ -51,7 +51,8 @@ namespace Semesterabgabe {
         rezept.innerHTML = "";
         console.log(objekt);
 
-        for (let rezeptEintrag of objekt) {
+        //Rezepteintrag unter "Meine Rezepte" erstellen
+        for (let rezeptEintrag of objekt) { 
 
             let blogPost = document.createElement("div");
             rezept.appendChild(blogPost);
@@ -90,6 +91,7 @@ namespace Semesterabgabe {
             zubereitungText.textContent = rezeptEintrag["zubereitung"];
             blogPostInfo.appendChild(zubereitungText);
 
+            //Button unter jedem Rezept um es wieder zu löschen
             let deleteRecipe = document.createElement("button");
             deleteRecipe.textContent = "Löschen";
             deleteRecipe.addEventListener("click", () => handleClickDelete(rezeptEintrag["titel"]));
@@ -97,6 +99,7 @@ namespace Semesterabgabe {
         }
     }
 
+    //Rezept löschen und alle nun vorhanden Rezepte anzeigen
     async function handleClickDelete(rezeptName: string): Promise<void> {
         freshUrl();
         let username = localStorage.getItem("username")

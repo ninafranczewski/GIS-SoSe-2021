@@ -7,7 +7,7 @@ var Semesterabgabe;
         url = "https://gissose2021omb.herokuapp.com";
         //url = "http://localhost:8100";
     }
-    //Button
+    //Button zum Rezept erstellen
     let erstellen = document.getElementById("submit");
     erstellen.addEventListener("click", handleClickSubmit);
     async function handleClickSubmit() {
@@ -35,6 +35,7 @@ var Semesterabgabe;
         let rezept = document.getElementById("neuesRezept");
         rezept.innerHTML = "";
         console.log(objekt);
+        //Rezepteintrag unter "Meine Rezepte" erstellen
         for (let rezeptEintrag of objekt) {
             let blogPost = document.createElement("div");
             rezept.appendChild(blogPost);
@@ -64,12 +65,14 @@ var Semesterabgabe;
             let zubereitungText = document.createElement("p");
             zubereitungText.textContent = rezeptEintrag["zubereitung"];
             blogPostInfo.appendChild(zubereitungText);
+            //Button unter jedem Rezept um es wieder zu löschen
             let deleteRecipe = document.createElement("button");
             deleteRecipe.textContent = "Löschen";
             deleteRecipe.addEventListener("click", () => handleClickDelete(rezeptEintrag["titel"]));
             blogPostInfo.appendChild(deleteRecipe);
         }
     }
+    //Rezept löschen und alle nun vorhanden Rezepte anzeigen
     async function handleClickDelete(rezeptName) {
         freshUrl();
         let username = localStorage.getItem("username");

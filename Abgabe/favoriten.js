@@ -7,6 +7,7 @@ var Semesterabgabe;
         url = "https://gissose2021omb.herokuapp.com";
         //url = "http://localhost:8100";
     }
+    //Icon zum Rezept favorisieren 
     async function handleClickIcon(rezeptBesitzer, rezeptName) {
         freshUrl();
         let username = localStorage.getItem("username");
@@ -15,6 +16,7 @@ var Semesterabgabe;
         await fetch(url);
         console.log(url);
     }
+    //auflisten der favoristierten Rezepte
     async function getRecipes() {
         freshUrl();
         let username = localStorage.getItem("username");
@@ -34,6 +36,7 @@ var Semesterabgabe;
             blogPostInfo.appendChild(blogPostInfoIcon);
             let blogPostInfoIconImg = document.createElement("img");
             blogPostInfoIconImg.addEventListener("click", () => handleClickIcon(rezeptEintrag.user, rezeptEintrag.titel));
+            //für jedes icon wird eine anonyme Funktion erstellt, welche die handleClick für das aktuell ausgewählte Rezept ausführt (hier: wieder aus der favoritenListe löschen)
             blogPostInfoIconImg.src = "img/icon.png";
             blogPostInfoIconImg.alt = "heart-icon";
             blogPostInfoIcon.appendChild(blogPostInfoIconImg);
